@@ -24,7 +24,6 @@ namespace ProjGenspil
             WaitingList = waitingList;
             Requests = requests;
             Quantity = quantity;
-            
         }
     }
 }

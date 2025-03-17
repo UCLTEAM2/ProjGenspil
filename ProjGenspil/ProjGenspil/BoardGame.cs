@@ -23,5 +23,16 @@ namespace ProjGenspil
         public string GameCondition { get => gameCondition; set => gameCondition = value; }
         public string GameLanguage { get => gameLanguage; set => gameLanguage = value; }
         public double GamePrice { get => gamePrice; set => gamePrice = value; }
+
+        public BoardGame(string gameName, string gameVarient, string gameGenre, int gamePlayers, string gameCondition, string gameLanguage, double gamePrice)
+        {
+            GameName = gameName;
+            GameVarient = gameVarient;
+            GameGenre = gameGenre;
+            GamePlayers = gamePlayers;
+            GameCondition = gameCondition;
+            GameLanguage = gameLanguage;
+            GamePrice = gamePrice;
+        }
     }
 }

@@ -24,10 +24,7 @@ namespace ProjGenspil
             WaitingList = waitingList;
             Requests = requests;
             Quantity = quantity;
-            Quantity = quantity;
-            Games = games;
-            WaitingList = waitingList;
-            Requests = requests;
+            
         }
     }
 }

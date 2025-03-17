@@ -18,6 +18,16 @@ namespace ProjGenspil
         internal List<Stock> WaitingList { get => waitingList; set => waitingList = value; }
         internal List<Stock> Requests { get => requests; set => requests = value; }
 
-
+        public Stock(List<Stock> games, List<Stock> waitingList, List<Stock> requests, int quantity)
+        {
+            Games = games;
+            WaitingList = waitingList;
+            Requests = requests;
+            Quantity = quantity;
+            Quantity = quantity;
+            Games = games;
+            WaitingList = waitingList;
+            Requests = requests;
+        }
     }
 }

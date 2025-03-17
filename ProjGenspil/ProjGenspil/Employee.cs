@@ -8,12 +8,12 @@ namespace ProjGenspil
 {
     internal class Employee
     {
-        private int employeeName;
-        private char employeeID;
+        private string employeeName;
+        private int employeeID;
         private List<Employee> employeeList;
 
-        public int EmployeeName { get => employeeName; set => employeeName = value; }
-        public char EmployeeID { get => employeeID; set => employeeID = value; }
+        public string EmployeeName { get => employeeName; set => employeeName = value; }
+        public int EmployeeID { get => employeeID; set => employeeID = value; }
         internal List<Employee> EmployeeList { get => employeeList; set => employeeList = value; }
     }
 }

@@ -13,5 +13,11 @@ namespace ProjGenspil
 
         public string CustomerName { get => customerName; set => customerName = value; }
         public int CustomerPhone { get => customerPhone; set => customerPhone = value; }
+
+        public Customer(string customerName, int customerPhone)
+        {
+            CustomerName = customerName;
+            CustomerPhone = customerPhone;
+        }
     }
 }

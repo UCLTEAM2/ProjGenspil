@@ -14,9 +14,9 @@ namespace ProjGenspil
         private int quantity;
 
         public int Quantity { get => quantity; set => quantity = value; }
-        internal List<Stock> Games { get => games; set => games = value; }
-        internal List<Stock> WaitingList { get => waitingList; set => waitingList = value; }
-        internal List<Stock> Requests { get => requests; set => requests = value; }
+        public List<Stock> Games { get => games; set => games = value; }
+        public List<Stock> WaitingList { get => waitingList; set => waitingList = value; }
+        public List<Stock> Requests { get => requests; set => requests = value; }
 
         public Stock(List<Stock> games, List<Stock> waitingList, List<Stock> requests, int quantity)
         {

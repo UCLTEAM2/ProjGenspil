@@ -14,7 +14,7 @@ namespace ProjGenspil
 
         public string EmployeeName { get => employeeName; set => employeeName = value; }
         public int EmployeeID { get => employeeID; set => employeeID = value; }
-        internal List<Employee> EmployeeList { get => employeeList; set => employeeList = value; }
+        public List<Employee> EmployeeList { get => employeeList; set => employeeList = value; }
 
         public Employee(string employeeName, int employeeID, List<Employee> employeeList)
         {

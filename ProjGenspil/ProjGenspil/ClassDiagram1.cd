@@ -1,28 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="ProjGenspil.Stock">
-    <Position X="9.25" Y="2.25" Width="1.5" />
+    <Position X="4.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>YAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAEAAAgHAAAAA=</HashCode>
       <FileName>Stock.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProjGenspil.Employee">
-    <Position X="11.25" Y="2.25" Width="1.5" />
+    <Position X="2.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAoIAAAICAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
       <FileName>Employee.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProjGenspil.Customer">
-    <Position X="7.25" Y="2.25" Width="1.5" />
+    <Position X="9.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAABAAQAAQAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Customer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProjGenspil.BoardGame">
-    <Position X="5.25" Y="2.25" Width="1.5" />
+    <Position X="7.25" Y="2.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAABAAAAIAAAACAAAAAAAAAAAAABCAIAAQhSAAAAUQ=</HashCode>
       <FileName>BoardGame.cs</FileName>

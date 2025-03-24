@@ -8,31 +8,32 @@ namespace ProjGenspil
 {
     internal class BoardGame
     {
-        private string gameName;
-        private string gameVarient;
-        private string gameGenre;
-        private int gamePlayers;
-        private string gameCondition;
-        private string gameLanguage;
-        private double gamePrice;
+        private string _gameName;
+        private string _gameVariant;
+        private string _gameGenre;
+        private int _gameNumOfPlayers;
+        private string _gameCondition;
+        private string _gameLanguage;
+        private double _gamePrice;
 
-        public string GameName { get => gameName; set => gameName = value; }
-        public string GameVarient { get => gameVarient; set => gameVarient = value; }
-        public string GameGenre { get => gameGenre; set => gameGenre = value; }
-        public int GamePlayers { get => gamePlayers; set => gamePlayers = value; }
-        public string GameCondition { get => gameCondition; set => gameCondition = value; }
-        public string GameLanguage { get => gameLanguage; set => gameLanguage = value; }
-        public double GamePrice { get => gamePrice; set => gamePrice = value; }
+        public string GameName { get => _gameName; set => _gameName = value; }
+        public string GameVariant { get => _gameVariant; set => _gameVariant = value; }
+        public string GameGenre { get => _gameGenre; set => _gameGenre = value; }
+        public int GameNumOfPlayers { get => _gameNumOfPlayers; set => _gameNumOfPlayers = value; }
+        public string GameCondition { get => _gameCondition; set => _gameCondition = value; }
+        public string GameLanguage { get => _gameLanguage; set => _gameLanguage = value; }
+        public double GamePrice { get => _gamePrice; set => _gamePrice = value; }
 
-        public BoardGame(string gameName, string gameVarient, string gameGenre, int gamePlayers, string gameCondition, string gameLanguage, double gamePrice)
+        public BoardGame(string gameName, string gameVariant, string gameGenre, int gameNumOfPlayers, string gameCondition, string gameLanguage, double gamePrice)
         {
             GameName = gameName;
-            GameVarient = gameVarient;
+            GameVariant = gameVariant;
             GameGenre = gameGenre;
-            GamePlayers = gamePlayers;
+            GameNumOfPlayers = gameNumOfPlayers;
             GameCondition = gameCondition;
             GameLanguage = gameLanguage;
             GamePrice = gamePrice;
+
         }
     }
 }

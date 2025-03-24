@@ -8,15 +8,15 @@ namespace ProjGenspil
 {
     internal class Stock
     {
-        private List<Stock> games;
-        private List<Stock> waitingList;
-        private List<Stock> requests;
+        private List<Stock> _games;
+        private List<Stock> _waitingList;
+        private List<Stock> _requests;
         private int quantity;
 
         public int Quantity { get => quantity; set => quantity = value; }
-        public List<Stock> Games { get => games; set => games = value; }
-        public List<Stock> WaitingList { get => waitingList; set => waitingList = value; }
-        public List<Stock> Requests { get => requests; set => requests = value; }
+        public List<Stock> Games { get => _games; set => _games = value; }
+        public List<Stock> WaitingList { get => _waitingList; set => _waitingList = value; }
+        public List<Stock> Requests { get => _requests; set => _requests = value; }
 
         public Stock(List<Stock> games, List<Stock> waitingList, List<Stock> requests, int quantity)
         {

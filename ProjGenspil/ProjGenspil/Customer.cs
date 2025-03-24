@@ -8,11 +8,11 @@ namespace ProjGenspil
 {
     internal class Customer
     {
-        private string customerName;
-        private int customerPhone;
+        private string _customerName;
+        private int _customerPhone;
 
-        public string CustomerName { get => customerName; set => customerName = value; }
-        public int CustomerPhone { get => customerPhone; set => customerPhone = value; }
+        public string CustomerName { get => _customerName; set => _customerName = value; }
+        public int CustomerPhone { get => _customerPhone; set => _customerPhone = value; }
 
         public Customer(string customerName, int customerPhone)
         {

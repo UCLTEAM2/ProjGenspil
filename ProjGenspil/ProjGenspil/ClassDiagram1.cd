@@ -3,29 +3,29 @@
   <Class Name="ProjGenspil.Stock">
     <Position X="4.75" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>YAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAEAAAgHAAAAA=</HashCode>
+      <HashCode>YAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAEgBAAAAQ=</HashCode>
       <FileName>Stock.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProjGenspil.Employee">
     <Position X="2.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAoIAAAICAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AQIIACAIAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Employee.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProjGenspil.Customer">
     <Position X="9.5" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAABAAQAAQAEAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAQAAAgAAAAAAAAQAAQAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Customer.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="ProjGenspil.BoardGame">
+  <Class Name="ProjGenspil.BoardGameVariant">
     <Position X="7.25" Y="2.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAABAAAAIAAAACAAAAAAAAAAAAABCAIAAQhSAAAAUQ=</HashCode>
-      <FileName>BoardGame.cs</FileName>
+      <HashCode>AAAQBQAAAEAAAAAAAAAAAAAABAAAAAAAAAAhEgAAAEA=</HashCode>
+      <FileName>BoardGameVariant.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

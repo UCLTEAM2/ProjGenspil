@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjGenspil
 {
-    internal class Employee
+    class Employee
     {
         private string _employeeName;
         private int _employeeID;

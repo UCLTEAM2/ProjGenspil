@@ -22,8 +22,7 @@
                 Console.WriteLine("7. Exit");
 
                 ConsoleKeyInfo menuChoice = Console.ReadKey(true);
-                int keyPress = (int)menuChoice.Key;
-
+               
                 switch (menuChoice.Key)
                 {
                     case ConsoleKey.D0:

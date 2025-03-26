@@ -16,11 +16,11 @@ namespace ProjGenspil
         public int EmployeeID { get => _employeeID; set => _employeeID = value; }
         public List<Employee> EmployeeList { get => _employeeList; set => _employeeList = value; }
 
-        public Employee(string employeeName, int employeeID, List<Employee> employeeList)
+        public Employee(string employeeName, int employeeID)
         {
             EmployeeName = employeeName;
             EmployeeID = employeeID;
-            EmployeeList = employeeList;
+            
         }
     }
 }

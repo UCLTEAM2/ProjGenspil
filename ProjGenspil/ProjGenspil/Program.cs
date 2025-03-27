@@ -221,19 +221,23 @@
                     Console.SetCursorPosition("Enter the games name: ".Length, 14);
                     
                     string search = Console.ReadLine();
+                    bool foundGame = false;
 
                     foreach (var game in Stock.Games)
                     {
-                        if (game.GameName != search)
-                        {
-                            Console.WriteLine($"There is no game called \"{search}\" in the system");
-                        }
-                        else
+                        if (game.GameName.ToLower() == search.ToLower())
                         {
                             Console.WriteLine(game.GetGameDetails());
+                            foundGame = true;
                         }
                         
                     }
+                    if (!foundGame)
+                    {
+                        Console.WriteLine($"No games with the name \"{search}\" was found!");
+                    }
+
+
                 }
             }
 

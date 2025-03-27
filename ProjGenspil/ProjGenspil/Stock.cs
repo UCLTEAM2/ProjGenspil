@@ -24,5 +24,11 @@ namespace ProjGenspil
             //Games = games;
             
         }
+
+        //Matador
+        //monopoly
+        //Yatzy
+        //Matador junior
+        //Matador Lego
     }
 }

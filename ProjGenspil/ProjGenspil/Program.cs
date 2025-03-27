@@ -5,13 +5,22 @@
         public static string systemMenu = @"
 -------------------- System Menu -------------------
 |                                                  |
-|    0. Search for a game                          |
 |    1. Add a new game to the stock                |
-|    2. Game menu                                  |
-|    3. Stock menu                                 |
-|    4. Add a game to waiting list                 |
-|    5. Make a request on a game                   |
+|    2. Search menu                                |
+|    3. Game menu                                  |
+|    4. Stock menu                                 |
+|    5. Add a game to waiting list                 |
+|    6. Make a request on a game                   |
 |    ESC. Exit                                     |
+|                                                  |
+----------------------------------------------------";
+        public static string searchMenu = @"
+-------------------- Search Menu -------------------
+|                                                  |
+|    1. Search by game name                        |
+|    2. Search by game genre                       |
+|    3. Search by number of players                |
+|    ESC. To go back to the previous menu          |
 |                                                  |
 ----------------------------------------------------";
 
@@ -53,12 +62,6 @@
 
                 switch (menuChoice.Key)
                 {
-                    case ConsoleKey.D0:
-                    case ConsoleKey.NumPad0:
-                        //Search for a game
-                        //TODO: Open stock list, make a search function, that loops through the list/array/arrayList, to find a matching game. The list is located in the Stock class.
-                        SearchForAGame();
-                        break;
                     case ConsoleKey.D1:
                     case ConsoleKey.NumPad1:
                         //Add a new game to the stock
@@ -69,6 +72,51 @@
                         break;
                     case ConsoleKey.D2:
                     case ConsoleKey.NumPad2:
+                        //Search menu
+                        //TODO: Open stock list, make a search function, that loops through the list/array/arrayList, to find a matching game. The list is located in the Stock class.
+                        Console.Clear();
+                        Console.WriteLine(searchMenu);
+                        Console.SetCursorPosition(0, 10); // Move cursor below the menu (line 10)
+                        bool innerSearchLoop = true;
+                        while (innerSearchLoop)
+                        {
+                            ConsoleKeyInfo searchMenuChoice = Console.ReadKey(true);
+                            switch (searchMenuChoice.Key)
+                            {
+                                case ConsoleKey.D1:
+                                case ConsoleKey.NumPad1:
+                                    //Search by game name
+                                    SearchForAGame();
+                                    break;
+                                case ConsoleKey.D2:
+                                case ConsoleKey.NumPad2:
+                                    //Search by game genre
+                                    SearchForAGameGenre();
+                                    break;
+                                case ConsoleKey.D3:
+                                case ConsoleKey.NumPad3:
+                                    //Search by number of players
+
+                                    break;
+                                case ConsoleKey.Escape:
+                                    Console.Clear();
+                                    innerSearchLoop = false; // Exit the inner loop to return to outer switch
+                                    break;
+                                default:
+                                    Console.Clear();
+                                    Console.WriteLine(searchMenu);
+                                    Console.SetCursorPosition(0, 10); // Move cursor below the menu (line 10)
+                                    Console.WriteLine("Invalid input, please try again!".PadRight(Console.WindowWidth)); // Clear line
+                                    Console.SetCursorPosition(0, 10); // Move cursor below the menu (line 10)
+                                    break;
+                            }
+                        }
+                        Console.Clear();
+                        Console.WriteLine($"{systemMenu}");
+                        Console.SetCursorPosition(0, 14); // Move cursor below the menu (line 14)
+                        break;
+                    case ConsoleKey.D3:
+                    case ConsoleKey.NumPad3:
                         // Game menu
                         Console.Clear();
                         Console.WriteLine(gameMenu);
@@ -119,8 +167,8 @@
                         break;
 
 
-                    case ConsoleKey.D3:
-                    case ConsoleKey.NumPad3:
+                    case ConsoleKey.D4:
+                    case ConsoleKey.NumPad4:
                         //Stock Menu
                         Console.Clear(); // Clear once at the start
                         Console.WriteLine(stockMenu);
@@ -165,14 +213,14 @@
                         Console.WriteLine($"{systemMenu}");
                         Console.SetCursorPosition(0, 14); // Move cursor below the menu (line 14)
                         break;
-                    case ConsoleKey.D4:
-                    case ConsoleKey.NumPad4:
+                    case ConsoleKey.D5:
+                    case ConsoleKey.NumPad5:
                         //Add a game to waiting list
 
                         break;
 
-                    case ConsoleKey.D5:
-                    case ConsoleKey.NumPad5:
+                    case ConsoleKey.D6:
+                    case ConsoleKey.NumPad6:
                         //Make a request on a game
                         break;
                     case ConsoleKey.Escape:
@@ -202,23 +250,32 @@
 
             }
 
+            //static int ChooseGame()
+            //{
+            //    if (Stock.Games.Count == 0)
+            //    {
+
+            //    }
+            //}
+
             static void SearchForAGame()
             {
                 Console.Clear();
 
-                Console.WriteLine($"{systemMenu}");
+                Console.WriteLine($"{searchMenu}");
 
                 if (Stock.Games.Count == 0)
                 {
-                    Console.SetCursorPosition(0, 14); // Move cursor below the menu (line 14)
-                    Console.WriteLine("There is no games in the stock!");
-                    
+                    Console.SetCursorPosition(0, 10); // Move cursor below the menu (line 10)
+                    Console.Write("There is no games in the stock!".PadRight(Console.WindowWidth));
+                    Console.SetCursorPosition(0, 10); // Move cursor below the menu (line 10)
+
                 }
                 else
                 {
-                    Console.SetCursorPosition(0, 14); // Move cursor below the menu (line 14)
+                    Console.SetCursorPosition(0, 10); // Move cursor below the menu (line 14)
                     Console.Write("Enter the games name: ".PadRight(Console.WindowWidth));
-                    Console.SetCursorPosition("Enter the games name: ".Length, 14);
+                    Console.SetCursorPosition("Enter the games name: ".Length, 10);
                     
                     string search = Console.ReadLine();
                     bool foundGame = false;
@@ -234,7 +291,87 @@
                     }
                     if (!foundGame)
                     {
-                        Console.WriteLine($"No games with the name \"{search}\" was found!");
+                        Console.Write($"No games with the name \"{search}\" was found!".PadRight(Console.WindowWidth));
+                    }
+
+
+                }
+            }
+
+            static void SearchForAGameGenre()
+            {
+                Console.Clear();
+
+                Console.WriteLine($"{searchMenu}");
+
+                if (Stock.Games.Count == 0)
+                {
+                    Console.SetCursorPosition(0, 10); // Move cursor below the menu (line 10)
+                    Console.Write("There is no games in the stock!".PadRight(Console.WindowWidth));
+                    Console.SetCursorPosition(0, 10); // Move cursor below the menu (line 10)
+
+                }
+                else
+                {
+                    Console.SetCursorPosition(0, 10); // Move cursor below the menu (line 14)
+                    Console.Write("Enter the games genre: ".PadRight(Console.WindowWidth));
+                    Console.SetCursorPosition("Enter the games genre: ".Length, 10);
+
+                    string search = Console.ReadLine();
+                    bool foundGame = false;
+
+                    foreach (var game in Stock.Games)
+                    {
+                        if (game.GameGenre.ToLower() == search.ToLower())
+                        {
+                            Console.WriteLine(game.GetGameDetails());
+                            foundGame = true;
+                        }
+
+                    }
+                    if (!foundGame)
+                    {
+                        Console.Write($"No games with the genre \"{search}\" was found!".PadRight(Console.WindowWidth));
+                    }
+
+
+                }
+            }
+
+            static void SearchByNumberOfPlayers()
+            {
+                Console.Clear();
+
+                Console.WriteLine($"{searchMenu}");
+
+                if (Stock.Games.Count == 0)
+                {
+                    Console.SetCursorPosition(0, 10); // Move cursor below the menu (line 10)
+                    Console.Write("There is no games in the stock!".PadRight(Console.WindowWidth));
+                    Console.SetCursorPosition(0, 10); // Move cursor below the menu (line 10)
+
+                }
+                else
+                {
+                    Console.SetCursorPosition(0, 10); // Move cursor below the menu (line 14)
+                    Console.Write("Enter how many players you are: ".PadRight(Console.WindowWidth));
+                    Console.SetCursorPosition("Enter how many players you are: ".Length, 10);
+
+                    string search = Console.ReadLine();
+                    bool foundGame = false;
+
+                    foreach (var game in Stock.Games)
+                    {
+                        if (game.GameGenre.ToLower() == search.ToLower())
+                        {
+                            Console.WriteLine(game.GetGameDetails());
+                            foundGame = true;
+                        }
+
+                    }
+                    if (!foundGame)
+                    {
+                        Console.Write($"No games with the genre \"{search}\" was found!".PadRight(Console.WindowWidth));
                     }
 
 

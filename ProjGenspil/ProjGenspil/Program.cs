@@ -15,11 +15,21 @@
 |    ESC. Exit                                     |
 |                                                  |
 ----------------------------------------------------";
+
+        public static string stockMenu = @"
+-------------------- Stock Menu --------------------
+|                                                  |
+|    1. Show all games available in stock          |
+|    2. Show all games that's in a waiting list    |
+|    3. Show all games that've been requested      |
+|    ESC. To go back to the previous menu          |
+|                                                  |
+----------------------------------------------------";
         //public static List<BoardGameVariant> Games = new List<BoardGameVariant>();
         public static void Main(string[] args)
         {
             //User menu
-            Console.WriteLine($"{systemMenu}");
+            Console.WriteLine(systemMenu);
 
             Console.SetCursorPosition(0, 14); // Move cursor below the menu (line 14)
 
@@ -68,15 +78,8 @@
                     case ConsoleKey.D5:
                     case ConsoleKey.NumPad5:
                         Console.Clear(); // Clear once at the start
-                        Console.WriteLine(@"
--------------------- Stock Menu --------------------
-|                                                  |
-|    1. Show all games available in stock          |
-|    2. Show all games that's in a waiting list    |
-|    3. Show all games that've been requested      |
-|    ESC. To go back to the previous menu          |
-|                                                  |
-----------------------------------------------------");
+                        Console.WriteLine(stockMenu);
+                        Console.SetCursorPosition(0, 10); // Move cursor below the menu (line 10)
                         bool innerLoop = true;
                         while (innerLoop)
                         {
@@ -104,6 +107,8 @@
                                     innerLoop = false; // Exit the inner loop to return to outer switch
                                     break;
                                 default:
+                                    Console.Clear();
+                                    Console.WriteLine(stockMenu);
                                     Console.SetCursorPosition(0, 10); // Move cursor below the menu (line 10)
                                     Console.WriteLine("Invalid input, please try again!".PadRight(Console.WindowWidth)); // Clear line
                                     Console.SetCursorPosition(0, 10); // Move cursor below the menu (line 10)
@@ -137,12 +142,13 @@
             static void PrintTest()
             {
 
-                Console.WriteLine("\n---- Test method ----");
+                Console.WriteLine("---- Test method ----".PadRight(Console.WindowWidth));
                 foreach (var game in Stock.Games)
                 {
                     
                     Console.WriteLine(game.GetGameDetails());
                     
+
                 }
             }
 

@@ -133,7 +133,7 @@
                             }
                         }
                         Console.Clear();
-                        Console.WriteLine($"{systemMenu}");
+                        Console.WriteLine(systemMenu);
                         Console.SetCursorPosition(0, 11); // Move cursor below the menu (line 11)
                         break;
 
@@ -228,7 +228,7 @@
 
                         }
                         Console.Clear();
-                        Console.WriteLine($"{systemMenu}");
+                        Console.WriteLine(systemMenu);
                         Console.SetCursorPosition(0, 11); // Move cursor below the menu (line 11)
                         break;
 
@@ -285,7 +285,7 @@
             {
                 Console.SetCursorPosition(0, 11); // Move cursor below the menu (line 11)
                 Console.Write("Enter the games name: ".PadRight(Console.WindowWidth));
-                Console.SetCursorPosition(0, 11); // Move cursor below the menu (line 11)
+                Console.SetCursorPosition("Enter the games name: ".Length, 11);
 
                 string search = Console.ReadLine();
                 bool foundGame = false;
@@ -297,6 +297,7 @@
                         Console.WriteLine(game.GetGameDetails());
                         foundGame = true;
                     }
+
 
                 }
                 if (!foundGame)
@@ -325,7 +326,7 @@
             {
                 Console.SetCursorPosition(0, 11); // Move cursor below the menu (line 11)
                 Console.Write("Enter the games genre: ".PadRight(Console.WindowWidth));
-                Console.SetCursorPosition("Enter the games genre: ".Length, 10);
+                Console.SetCursorPosition("Enter the games genre: ".Length, 11);
 
                 string search = Console.ReadLine();
                 bool foundGame = false;
@@ -438,5 +439,5 @@
     }
 
 
-    
+
 }

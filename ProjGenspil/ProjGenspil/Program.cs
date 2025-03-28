@@ -260,13 +260,29 @@
 
         }
 
-        //static int ChooseGame()
-        //{
-        //    if (Stock.Games.Count == 0)
-        //    {
+        static int ChooseGame()
+        {
+            if (Stock.Games.Count == 0)
+            {
+                Console.WriteLine("There is no games in the system, please add some games first!");
+                return -1;
+            }
 
-        //    }
-        //}
+            for (int i = 0; i < Stock.Games.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {Stock.Games[i].GetGameDetails()}");
+            }
+
+            Console.Write("Enter the games number: ");
+
+            int gameIndex = Convert.ToInt32(Console.ReadLine());
+
+
+
+
+
+            return gameIndex;
+        }
 
         static void SearchForAGame()
         {
@@ -427,6 +443,11 @@
             Console.SetCursorPosition(0, 14); // Move cursor below the menu (line 14)
 
 
+
+        }
+
+        static void AddAGameCopy()
+        {
 
         }
 

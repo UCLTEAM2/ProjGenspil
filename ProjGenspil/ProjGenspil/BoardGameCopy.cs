@@ -15,13 +15,12 @@ namespace ProjGenspil
         
         public string GameCondition { get => _gameCondition; set => _gameCondition = value; }
         public double GamePrice { get => _gamePrice; set => _gamePrice = value; }
-        public BoardGameVariant Variant { get => variant; set => variant = value; }
+        
 
-        public BoardGameCopy(string gameCondition, double gamePrice, BoardGameVariant variant)
+        public BoardGameCopy(string gameCondition, double gamePrice)
         {
-            GameCondition = gameCondition;
-            GamePrice = gamePrice;
-            Variant = variant;
+            _gameCondition = gameCondition;
+            _gamePrice = gamePrice;
         }
 
     }

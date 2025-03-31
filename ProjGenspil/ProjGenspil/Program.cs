@@ -22,6 +22,7 @@
 |    4. Remove a game from the stock               |
 |    5. Add a game to waiting list                 |
 |    6. Make a request on a game                   |
+|    7. Prints all copies of a game                |
 |                                                  |
 |    ESC. To go back to the previous menu          |
 |                                                  |
@@ -49,6 +50,7 @@
 |                                                  |
 ----------------------------------------------------";
 
+
         public static void Main(string[] args)
         {
             //User menu
@@ -69,7 +71,7 @@
                         // Game manager
                         Console.Clear();
                         Console.WriteLine(gameManager);
-                        Console.SetCursorPosition(0, 14); // Move cursor below the menu (line 14)
+                        Console.SetCursorPosition(0, 15); // Move cursor below the menu (line 15)
                         bool innerGameLoop = true;
                         while (innerGameLoop)
                         {
@@ -79,7 +81,6 @@
                                 case ConsoleKey.D1:
                                 case ConsoleKey.NumPad1:
                                     //Add a new game to the stock
-                                    //TODO: Method that creates a game with parameters from a constructor, and saves the game in a list in the Stock Class. The constructor is located in the BoardGame Class.
                                     Console.Clear();
                                     AddBoardGame();
 
@@ -89,9 +90,16 @@
                                 case ConsoleKey.NumPad2:
                                     //Add a new copy to the stock, with a given condition and price and adds it to the specific game.
                                     //TODO: Method, that opens up stock list, find the list e.g Monopoly and adds a copy to it, with a given condition and price.
+                                    Console.Clear();
 
-                                    break;
+                                    int gameIndexForCopy = addCopyWithSearchIndex();
 
+                                    if (gameIndexForCopy != -1)
+                                    {
+                                        AddAGameCopy(gameIndexForCopy);
+                                    }
+
+                                        break;
                                 case ConsoleKey.D3:
                                 case ConsoleKey.NumPad3:
                                     //Edit a games details - Based on Index
@@ -119,6 +127,20 @@
                                     //TODO: A method that makes a request on a game, that does not exist in the stock, and adds it to a list of requested games.
 
                                     break;
+
+                                case ConsoleKey.D7:
+                                case ConsoleKey.NumPad7:
+                                    //Print all copies on a game
+                                    //TODO: A method that prints all copies on a game, with the condition, price and quantity
+                                    int gameIndex = ChooseGame();
+
+                                    if (gameIndex != -1)
+                                    {
+                                        PrintAllCopies(gameIndex);
+
+                                    }
+                                        break;
+
                                 case ConsoleKey.Escape:
                                     Console.Clear();
                                     innerGameLoop = false; // Exit the inner loop to return to outer switch
@@ -126,9 +148,9 @@
                                 default:
                                     Console.Clear();
                                     Console.WriteLine(gameManager);
-                                    Console.SetCursorPosition(0, 14); // Move cursor below the menu (line 14)
+                                    Console.SetCursorPosition(0, 15); // Move cursor below the menu (line 15)
                                     Console.WriteLine("Invalid input, please try again!".PadRight(Console.WindowWidth)); // Clear line
-                                    Console.SetCursorPosition(0, 14); // Move cursor below the menu (line 14)
+                                    Console.SetCursorPosition(0, 15); // Move cursor below the menu (line 15)
                                     break;
                             }
                         }
@@ -153,7 +175,8 @@
                                 case ConsoleKey.D1:
                                 case ConsoleKey.NumPad1:
                                     //Search by game name
-                                    SearchForAGame();
+                                    //SearchForAGame();
+                                    SearchForAGameByName();
                                     break;
                                 case ConsoleKey.D2:
                                 case ConsoleKey.NumPad2:
@@ -247,6 +270,18 @@
             }
         }
 
+        private static void PrintAllCopies(int gameIndex)
+        {
+            var copies = Stock.Games[gameIndex].GetAllCopies();
+
+            Console.WriteLine($"Copies of {Stock.Games[gameIndex].GetGameDetails()}");
+
+            foreach (var copy in copies)
+            {
+                Console.WriteLine(copy.GetCopyDetails());
+            }
+        }
+
         static void PrintTest()
         {
 
@@ -262,74 +297,213 @@
 
         static int ChooseGame()
         {
+            Console.WriteLine("\n---- Add a new copy to the stock ----");
+
             if (Stock.Games.Count == 0)
             {
                 Console.WriteLine("There is no games in the system, please add some games first!");
                 return -1;
             }
 
+            Console.Write("\nChoose a game: ");
+
             for (int i = 0; i < Stock.Games.Count; i++)
             {
-                Console.WriteLine($"{i + 1}. {Stock.Games[i].GetGameDetails()}");
+                Console.WriteLine($"{i + 1} {Stock.Games[i].GetGameDetails()}");
             }
 
             Console.Write("Enter the games number: ");
 
-            int gameIndex = Convert.ToInt32(Console.ReadLine());
+            int gameIndex = Convert.ToInt32(Console.ReadLine()) - 1;
 
+            if (gameIndex < 0 || gameIndex >= Stock.Games.Count)
+            {
 
+                Console.WriteLine("Invalid game selection!");
 
-
+                return -1;
+            }
 
             return gameIndex;
         }
 
-        static void SearchForAGame()
+
+        static int addCopyWithSearchIndex()
         {
             Console.Clear();
 
-            Console.WriteLine($"{searchMenu}");
+            Console.WriteLine(searchMenu);
+
+
 
             if (Stock.Games.Count == 0)
             {
-                Console.SetCursorPosition(0, 11); // Move cursor below the menu (line 11)
+                Console.Clear();
+                Console.WriteLine(gameManager);
+                Console.SetCursorPosition(0, 15); // Move cursor below the menu (line 11)
                 Console.Write("There is no games in the stock!".PadRight(Console.WindowWidth));
-                Console.SetCursorPosition(0, 11); // Move cursor below the menu (line 11)
+                Console.SetCursorPosition(0, 15); // Move cursor below the menu (line 11)
+                
+
+                return -1;
 
             }
-            else
+
+            //Console.WriteLine(searchMenu);
+
+            int gameIndex = -1;
+            
+            while (gameIndex <= -1)
             {
-                Console.SetCursorPosition(0, 11); // Move cursor below the menu (line 11)
-                Console.Write("Enter the games name: ".PadRight(Console.WindowWidth));
-                Console.SetCursorPosition("Enter the games name: ".Length, 11);
+                
 
-                string search = Console.ReadLine();
-                bool foundGame = false;
-
-                foreach (var game in Stock.Games)
+                ConsoleKeyInfo AddCopySearchMenu = Console.ReadKey(true);
+                switch (AddCopySearchMenu.Key)
                 {
-                    if (game.GameName.ToLower() == search.ToLower())
-                    {
-                        Console.WriteLine(game.GetGameDetails());
-                        foundGame = true;
-                    }
+                    case ConsoleKey.D1:
+                    case ConsoleKey.NumPad1:
+                        gameIndex = SearchForAGameByName();
 
+
+
+                        break;
+                        //case ConsoleKey.D2:
+                        //case ConsoleKey.NumPad2:
+                        //    Console.SetCursorPosition(0, 11); // Move cursor below the menu (line 11)
+                        //    Console.Write("Enter the games name: ".PadRight(Console.WindowWidth));
+                        //    Console.SetCursorPosition("Enter the games name: ".Length, 11);
+
+                        //    string search = Console.ReadLine();
+                        //    bool foundGame = false;
+
+
+                        //    for (int i = 0; i < Stock.Games.Count; i++)
+                        //    {
+                        //        if (Stock.Games[i].GameName.ToLower() == search.ToLower())
+                        //        {
+                        //            Console.WriteLine($"\nGame index number: {i + 1}" + Stock.Games[i].GetGameDetails());
+                        //            foundGame = true;
+                        //        }
+                        //    }
+                        //    if (!foundGame)
+                        //    {
+                        //        Console.Write($"No games with the name \"{search}\" was found!".PadRight(Console.WindowWidth));
+                        //        return -1;
+                        //    }
+                        //    Console.Write("Enter the games index number: ");
+
+                        //    gameIndex = Convert.ToInt32(Console.ReadLine()) - 1;
+
+
+                        //    if (gameIndex < 0 || gameIndex > Stock.Games.Count - 1)
+                        //    {
+                        //        Console.Clear();
+                        //        Console.WriteLine(gameManager);
+                        //        Console.SetCursorPosition(0, 15); // Move cursor below the menu (line 15)
+                        //        Console.WriteLine("Invalid input, please try again!".PadRight(Console.WindowWidth)); // Clear line
+                        //        Console.SetCursorPosition(0, 15); // Move cursor below the menu (line 15)
+                        //        return -1;
+                        //    }
+
+
+
+
+
+                        //    return gameIndex;
 
                 }
-                if (!foundGame)
-                {
-                    Console.Write($"No games with the name \"{search}\" was found!".PadRight(Console.WindowWidth));
-                }
 
-
+                return gameIndex;
             }
+            return gameIndex;
+            
+                //Console.SetCursorPosition(0, 11); // Move cursor below the menu (line 11)
+                //Console.Write("Enter the games name: ".PadRight(Console.WindowWidth));
+                //Console.SetCursorPosition("Enter the games name: ".Length, 11);
+
+                //string search = Console.ReadLine();
+                //bool foundGame = false;
+
+
+                //for (int i = 0; i < Stock.Games.Count; i++)
+                //{
+                //    if (Stock.Games[i].GameName.ToLower() == search.ToLower())
+                //    {
+                //        Console.WriteLine($"\nGame index number: {i + 1}" + Stock.Games[i].GetGameDetails());
+                //        foundGame = true;
+                //    }
+                //}
+                //if (!foundGame)
+                //{
+                //    Console.Write($"No games with the name \"{search}\" was found!".PadRight(Console.WindowWidth));
+                //    return -1;
+                //}
+                //Console.Write("Enter the games number: ");
+
+                //int gameIndex = Convert.ToInt32(Console.ReadLine()) - 1;
+
+                //if (gameIndex < 0 || gameIndex >= Stock.Games.Count)
+                //{
+
+                //    Console.WriteLine("Invalid game selection!");
+
+                //    return -1;
+                //}
+
+                //return gameIndex;
+            
+            
+                
+            
         }
 
+        static int SearchForAGameByName()
+        {
+           
+
+            Console.SetCursorPosition(0, 11); // Move cursor below the menu (line 11)
+            Console.Write("Enter the games name: ".PadRight(Console.WindowWidth));
+            Console.SetCursorPosition("Enter the games name: ".Length, 11);
+
+            string search = Console.ReadLine();
+            bool foundGame = false;
+
+
+            for (int i = 0; i < Stock.Games.Count; i++)
+            {
+                if (Stock.Games[i].GameName.ToLower() == search.ToLower())
+                {
+                    Console.WriteLine($"\nGame index number: {i + 1}" + Stock.Games[i].GetGameDetails());
+                    foundGame = true;
+                }
+            }
+            if (!foundGame)
+            {
+                Console.Write($"No games with the name \"{search}\" was found!".PadRight(Console.WindowWidth));
+                return -1;
+            }
+            Console.Write("Enter the games index number: ");
+
+            int gameIndex = Convert.ToInt32(Console.ReadLine()) - 1;
+
+
+            if (gameIndex < 0 || gameIndex > Stock.Games.Count - 1)
+            {
+                Console.Clear();
+                Console.WriteLine(gameManager);
+                Console.SetCursorPosition(0, 15); // Move cursor below the menu (line 15)
+                Console.WriteLine("Invalid input, please try again!".PadRight(Console.WindowWidth)); // Clear line
+                Console.SetCursorPosition(0, 15); // Move cursor below the menu (line 15)
+                return -1;
+            }
+            return gameIndex;
+        
+        }
         static void SearchForAGameGenre()
         {
             Console.Clear();
 
-            Console.WriteLine($"{searchMenu}");
+            Console.WriteLine(searchMenu);
 
             if (Stock.Games.Count == 0)
             {
@@ -438,23 +612,32 @@
 
             Console.WriteLine($"{gameManager}");
 
-            Console.SetCursorPosition(0, 14); // Move cursor below the menu (line 14)
+            Console.SetCursorPosition(0, 15); // Move cursor below the menu (line 15)
             Console.WriteLine("The boardgame has been added to the system!".PadRight(Console.WindowWidth));
-            Console.SetCursorPosition(0, 14); // Move cursor below the menu (line 14)
+            Console.SetCursorPosition(0, 15); // Move cursor below the menu (line 15)
 
 
 
         }
 
-        static void AddAGameCopy()
+        static void AddAGameCopy(int gameIndex)
         {
+            Console.WriteLine($"Test index is {gameIndex}");
+            Console.WriteLine($"\n---- Add a new copy to the stock ----");
+            Console.WriteLine($"\nWhat's the condition of the copy?");
+            Console.WriteLine($"\n\"A\" for new\n\"B\" for slightly used\n\"C\" for used\n\"D\" for a bit worn\n\"E\" for very worn\n\"F\" for trash");
+            char condition = Convert.ToChar(Console.ReadLine().ToUpper());
+            Console.WriteLine($"\n Enter a price for the game");
+            double price = Convert.ToDouble(Console.ReadLine());
+
+            BoardGameCopy newCopy = new BoardGameCopy(condition, price);
+
+            Console.WriteLine($"The condition is: {condition}");
+            Console.WriteLine($"The price is: {price}");
+
+            Console.WriteLine("The copy has been added to the game");
 
         }
-
-        //static int ChooseGame()
-        //{
-
-        //}
 
 
     }

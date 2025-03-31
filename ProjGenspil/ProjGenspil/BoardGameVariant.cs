@@ -53,5 +53,10 @@ namespace ProjGenspil
             return details;
         }
 
+        public List<BoardGameCopy> GetAllCopies()
+        {
+            return new List<BoardGameCopy>(_boardGameCopies); //Returner en kopi for at undgå ekstern manipulation
+        }
+
     }
 }

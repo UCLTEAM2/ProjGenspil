@@ -8,20 +8,25 @@ namespace ProjGenspil
 {
     class BoardGameCopy
     {
-        private string _gameCondition;
+        private char _gameCondition;
         private double _gamePrice;
         private BoardGameVariant variant;
 
         
-        public string GameCondition { get => _gameCondition; set => _gameCondition = value; }
+        public char GameCondition { get => _gameCondition; set => _gameCondition = value; }
         public double GamePrice { get => _gamePrice; set => _gamePrice = value; }
         
 
-        public BoardGameCopy(string gameCondition, double gamePrice)
+        public BoardGameCopy(char gameCondition, double gamePrice)
         {
             _gameCondition = gameCondition;
             _gamePrice = gamePrice;
         }
 
+        public string GetCopyDetails()
+        {
+            string copyDetails = $"Game condition: \"{GameCondition}\"" + $"Price: \"{GamePrice}\"";
+            return copyDetails;
+        }
     }
 }

@@ -270,7 +270,7 @@
             }
         }
 
-        private static void PrintAllCopies(int gameIndex)
+        static void PrintAllCopies(int gameIndex)
         {
             var copies = Stock.Games[gameIndex].GetAllCopies();
 

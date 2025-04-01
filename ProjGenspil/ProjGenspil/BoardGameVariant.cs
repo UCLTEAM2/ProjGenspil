@@ -49,7 +49,12 @@ namespace ProjGenspil
 
         public string GetGameDetails()
         {
-            string details = $"\nGame name: {GameName}\nGame variant: {GameVariant}\nGenre: {GameGenre}\nMinimum number of players: {GameMinNumOfPlayers}\nMaximum number of players: {GameMaxNumOfPlayers}\nLanguage: {GameLanguage}";
+            string details = $"\nGame name: {GameName}".PadRight(Console.WindowWidth) +
+                $"\nGame variant: {GameVariant}".PadRight(Console.WindowWidth) +
+                $"\nGenre: {GameGenre}".PadRight(Console.WindowWidth) +
+                $"\nMinimum number of players: {GameMinNumOfPlayers}".PadRight(Console.WindowWidth) +
+                $"\nMaximum number of players: {GameMaxNumOfPlayers}".PadRight(Console.WindowWidth) +
+                $"\nLanguage: {GameLanguage}".PadRight(Console.WindowWidth);
             return details;
         }
 

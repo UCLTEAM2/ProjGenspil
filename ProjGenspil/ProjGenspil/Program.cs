@@ -14,7 +14,7 @@
 ----------------------------------------------------";
 
         public static string gameManager = @"
--------------------- Game Manager-------------------
+-------------------- Game Manager ------------------
 |                                                  |
 |    1. Add a new game to the stock                |
 |    2. Add a new copy to the stock                |
@@ -272,13 +272,13 @@
 
         static void PrintAllCopies(int gameIndex)
         {
+            Console.SetCursorPosition(0, 15);
+            Console.WriteLine($"Copies of {Stock.Games[gameIndex].GetGameDetails()}".PadRight(Console.WindowWidth));
             var copies = Stock.Games[gameIndex].GetAllCopies();
-
-            Console.WriteLine($"Copies of {Stock.Games[gameIndex].GetGameDetails()}");
 
             foreach (var copy in copies)
             {
-                Console.WriteLine(copy.GetCopyDetails());
+                Console.WriteLine(copy.GetCopyDetails().PadRight(Console.WindowWidth));
             }
         }
 

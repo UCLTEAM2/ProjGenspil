@@ -25,7 +25,7 @@ namespace ProjGenspil
 
         public string GetCopyDetails()
         {
-            string copyDetails = $"Game condition: \"{GameCondition}\"" + $"Price: \"{GamePrice}\"";
+            string copyDetails = $"Game condition: \"{GameCondition}\"" + $"\nPrice: {GamePrice} DOLLARS";
             return copyDetails;
         }
     }

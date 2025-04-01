@@ -132,7 +132,7 @@
                                 case ConsoleKey.NumPad7:
                                     //Print all copies on a game
                                     //TODO: A method that prints all copies on a game, with the condition, price and quantity
-                                    int gameIndex = ChooseGame();
+                                    int gameIndex = SearchForAGameByName(15);
 
                                     if (gameIndex != -1)
                                     {
@@ -176,7 +176,7 @@
                                 case ConsoleKey.NumPad1:
                                     //Search by game name
                                     //SearchForAGame();
-                                    SearchForAGameByName();
+                                    SearchForAGameByName(12);
                                     break;
                                 case ConsoleKey.D2:
                                 case ConsoleKey.NumPad2:
@@ -331,8 +331,8 @@
         static int addCopyWithSearchIndex()
         {
             Console.Clear();
-
             Console.WriteLine(searchMenu);
+            Console.SetCursorPosition(0, 11);
 
 
 
@@ -362,7 +362,7 @@
                 {
                     case ConsoleKey.D1:
                     case ConsoleKey.NumPad1:
-                        gameIndex = SearchForAGameByName();
+                        gameIndex = SearchForAGameByName(11);
 
 
 
@@ -457,13 +457,21 @@
             
         }
 
-        static int SearchForAGameByName()
+        static int SearchForAGameByName(int lines)
         {
-           
 
-            Console.SetCursorPosition(0, 11); // Move cursor below the menu (line 11)
-            Console.Write("Enter the games name: ".PadRight(Console.WindowWidth));
-            Console.SetCursorPosition("Enter the games name: ".Length, 11);
+            if (lines == 11)
+            {
+                Console.SetCursorPosition(0, 11); // Move cursor below the menu (line 11)
+                Console.Write("Enter the games name: ".PadRight(Console.WindowWidth));
+                Console.SetCursorPosition("Enter the games name: ".Length, 11);
+            }
+            if (lines == 15)
+            {
+                Console.SetCursorPosition(0, 15); // Move cursor below the menu (line 11)
+                Console.Write("Enter the games name: ".PadRight(Console.WindowWidth));
+                Console.SetCursorPosition("Enter the games name: ".Length, 15);
+            }
 
             string search = Console.ReadLine();
             bool foundGame = false;
@@ -622,20 +630,22 @@
 
         static void AddAGameCopy(int gameIndex)
         {
-            Console.WriteLine($"Test index is {gameIndex}");
-            Console.WriteLine($"\n---- Add a new copy to the stock ----");
             Console.WriteLine($"\nWhat's the condition of the copy?");
             Console.WriteLine($"\n\"A\" for new\n\"B\" for slightly used\n\"C\" for used\n\"D\" for a bit worn\n\"E\" for very worn\n\"F\" for trash");
             char condition = Convert.ToChar(Console.ReadLine().ToUpper());
             Console.WriteLine($"\n Enter a price for the game");
             double price = Convert.ToDouble(Console.ReadLine());
 
-            BoardGameCopy newCopy = new BoardGameCopy(condition, price);
+            BoardGameCopy copy = new BoardGameCopy(condition, price);
 
-            Console.WriteLine($"The condition is: {condition}");
-            Console.WriteLine($"The price is: {price}");
+            Stock.Games[gameIndex].AddCopy(copy);
 
-            Console.WriteLine("The copy has been added to the game");
+            Console.Clear();
+
+            Console.WriteLine(gameManager);
+            Console.SetCursorPosition(0, 15); // Move cursor below the menu (line 15)
+            Console.WriteLine("The copy has been added to the game".PadRight(Console.WindowWidth));
+            Console.SetCursorPosition(0, 15); // Move cursor below the menu (line 15)
 
         }
 

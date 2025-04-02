@@ -8,16 +8,16 @@ namespace ProjGenspil
 {
     class BoardGameCopy
     {
-        private char _gameCondition;
+        private Condition _gameCondition;
         private double _gamePrice;
         private BoardGameVariant variant;
 
         
-        public char GameCondition { get => _gameCondition; set => _gameCondition = value; }
+        public Condition GameCondition { get => _gameCondition; set => _gameCondition = value; }
         public double GamePrice { get => _gamePrice; set => _gamePrice = value; }
         
 
-        public BoardGameCopy(char gameCondition, double gamePrice)
+        public BoardGameCopy(Condition gameCondition, double gamePrice)
         {
             _gameCondition = gameCondition;
             _gamePrice = gamePrice;
@@ -29,5 +29,8 @@ namespace ProjGenspil
                 $"\nPrice: {GamePrice} DOLLARS".PadRight(Console.WindowWidth);
             return copyDetails;
         }
+
+
     }
+    
 }

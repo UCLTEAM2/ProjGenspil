@@ -29,7 +29,29 @@ namespace ProjGenspil
             }
         }
 
+        public List<BoardGameVariant> LoadVariantsFromFile()
+        {
+            List<BoardGameVariant> variants = new List<BoardGameVariant>();
 
+            if (!File.Exists(VariantFilePath))
+            {
+                Console.WriteLine("Variant file not found.");
+                return variants;
+            }
+
+            using (StreamReader sr = new StreamReader(VariantFilePath))
+            {
+                string line;
+                while ((line = sr.ReadLine()) != null)
+                {
+                    if (!string.IsNullOrEmpty(line))
+                    {
+                        variants.Add(BoardGameVariant.FromString(line));
+                    }
+                }
+            }
+            return variants;
+        }
 
         public List<BoardGameCopy> LoadBoardGameCopyFromFile()
         {

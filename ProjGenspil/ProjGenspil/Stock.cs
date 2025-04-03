@@ -13,7 +13,7 @@ namespace ProjGenspil
         private List<Stock> _requests;
         private int _quantity;
 
-        public static List<BoardGameVariant> Games { get; set; } = new List<BoardGameVariant>();
+        public List<BoardGameVariant> Games { get; set; } = new List<BoardGameVariant>();
 
         public void SaveToFile(string filePath)
         {
@@ -50,12 +50,6 @@ namespace ProjGenspil
         //public int Quantity { get => _quantity; set => _quantity = value; }
         //public List<Stock> WaitingList { get => _waitingList; set => _waitingList = value; }
         //public List<Stock> Requests { get => _requests; set => _requests = value; }
-
-        public Stock(List<Stock> games)
-        {
-            //Games = games;
-            
-        }
 
         //Matador
         //monopoly

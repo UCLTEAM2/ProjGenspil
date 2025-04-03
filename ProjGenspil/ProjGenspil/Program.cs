@@ -51,7 +51,7 @@
 |                                                  |
 ----------------------------------------------------";
 
-        static DataHandler handler;
+        //static DataHandler handler;
 
         public static void Main(string[] args)
         {
@@ -59,15 +59,23 @@
             string folder = Path.Combine(projectPath, "Data");
             Directory.CreateDirectory(folder);
 
-            string variantFile = Path.Combine(folder, "variants.txt");
-            string copyFile = Path.Combine(folder, "copies.txt");
+            string gamesFile = Path.Combine(folder, "games.txt");
+            
+            // Create a single Stock instance
+            var stock = new Stock();
 
-            handler = new DataHandler(variantFile, copyFile);
+            // Load existing data from the file (if it exists)
+            stock.LoadFromFile(gamesFile);
 
-            // Indlæs eksisterende data hvis det findes
-            Stock.Games = handler.LoadVariantsFromFile();
-            copies = handler.LoadBoardGameCopyFromFile(variants);
-
+            // Verify the contents of the Stock
+            foreach (var loadedVariant in stock.Games)
+            {
+                Console.WriteLine($"Variant: {loadedVariant.GameName} {loadedVariant.GameVariant}");
+                foreach (var copy in loadedVariant.BoardGameCopies)
+                {
+                    Console.WriteLine($"  Copy: {copy.GameCondition}, {copy.GamePrice}");
+                }
+            }
 
             //User menu
             Console.WriteLine(systemMenu);
@@ -98,7 +106,7 @@
                                 case ConsoleKey.NumPad1:
                                     //Add a new game to the stock
                                     Console.Clear();
-                                    AddBoardGame();
+                                    AddBoardGame(stock);
 
                                     break;
 
@@ -108,11 +116,11 @@
                                     //TODO: Method, that opens up stock list, find the list e.g Monopoly and adds a copy to it, with a given condition and price.
                                     Console.Clear();
 
-                                    int gameIndexForCopy = addCopyWithSearchIndex();
+                                    int gameIndexForCopy = addCopyWithSearchIndex(stock);
 
                                     if (gameIndexForCopy != -1)
                                     {
-                                        AddAGameCopy(gameIndexForCopy);
+                                        AddAGameCopy(stock, gameIndexForCopy);
                                     }
 
                                         break;
@@ -152,11 +160,11 @@
                                     //Print all copies on a game
                                     //TODO: A method that prints all copies on a game, with the condition, price and quantity
                                     Console.Clear();
-                                    int gameIndex = PrintCopyWithSearchIndex();
+                                    int gameIndex = PrintCopyWithSearchIndex(stock);
 
                                     if (gameIndex != -1)
                                     {
-                                        PrintAllCopies(gameIndex);
+                                        PrintAllCopies(stock, gameIndex);
 
                                     }
                                         break;
@@ -196,17 +204,17 @@
                                 case ConsoleKey.NumPad1:
                                     //Search by game name
                                     //SearchForAGame();
-                                    SearchForAGameByName();
+                                    SearchForAGameByName(stock);
                                     break;
                                 case ConsoleKey.D2:
                                 case ConsoleKey.NumPad2:
                                     //Search by game genre
-                                    SearchForAGameGenre();
+                                    SearchForAGameGenre(stock);
                                     break;
                                 case ConsoleKey.D3:
                                 case ConsoleKey.NumPad3:
                                     //Search by number of players
-                                    SearchByNumberOfPlayers();
+                                    SearchByNumberOfPlayers(stock);
                                     break;
                                 case ConsoleKey.Escape:
                                     Console.Clear();
@@ -243,7 +251,7 @@
                             {
                                 case ConsoleKey.D1:
                                 case ConsoleKey.NumPad1:
-                                    PrintTest();
+                                    PrintTest(stock);
                                     break;
 
                                 case ConsoleKey.D2:
@@ -290,24 +298,24 @@
             }
         }
 
-        static void PrintAllCopies(int gameIndex)
+        static void PrintAllCopies(Stock stock, int gameIndex)
         {
             Console.Clear();
-            Console.WriteLine($"\n ---- Copies of {Stock.Games[gameIndex].GameName} ----".PadRight(Console.WindowWidth));
-            var copies = Stock.Games[gameIndex].GetAllCopies();
+            Console.WriteLine($"\n ---- Copies of {stock.Games[gameIndex].GameName} ----".PadRight(Console.WindowWidth));
+            var copies = stock.Games[gameIndex].GetAllCopies();
 
             foreach (var copy in copies)
             {
-                Console.WriteLine(Stock.Games[gameIndex].GetGameDetails());
+                Console.WriteLine(stock.Games[gameIndex].GetGameDetails());
                 Console.WriteLine(copy.GetCopyDetails().PadRight(Console.WindowWidth));
             }
         }
 
-        static void PrintTest()
+        static void PrintTest(Stock stock)
         {
 
             Console.WriteLine("\n---- Test method ----".PadRight(Console.WindowWidth));
-            foreach (var game in Stock.Games)
+            foreach (var game in stock.Games)
             {
 
                 Console.WriteLine(game.GetGameDetails());
@@ -316,40 +324,40 @@
 
         }
 
-        static int ChooseGame()
-        {
-            Console.WriteLine("\n---- Add a new copy to the stock ----");
+        //static int ChooseGame()
+        //{
+        //    Console.WriteLine("\n---- Add a new copy to the stock ----");
 
-            if (Stock.Games.Count == 0)
-            {
-                Console.WriteLine("There is no games in the system, please add some games first!");
-                return -1;
-            }
+        //    if (stock.Games.Count == 0)
+        //    {
+        //        Console.WriteLine("There is no games in the system, please add some games first!");
+        //        return -1;
+        //    }
 
-            Console.Write("\nChoose a game: ");
+        //    Console.Write("\nChoose a game: ");
 
-            for (int i = 0; i < Stock.Games.Count; i++)
-            {
-                Console.WriteLine($"{i + 1} {Stock.Games[i].GetGameDetails()}");
-            }
+        //    for (int i = 0; i < stock.Games.Count; i++)
+        //    {
+        //        Console.WriteLine($"{i + 1} {stock.Games[i].GetGameDetails()}");
+        //    }
 
-            Console.Write("Enter the games number: ");
+        //    Console.Write("Enter the games number: ");
 
-            int gameIndex = Convert.ToInt32(Console.ReadLine()) - 1;
+        //    int gameIndex = Convert.ToInt32(Console.ReadLine()) - 1;
 
-            if (gameIndex < 0 || gameIndex >= Stock.Games.Count)
-            {
+        //    if (gameIndex < 0 || gameIndex >= stock.Games.Count)
+        //    {
 
-                Console.WriteLine("Invalid game selection!");
+        //        Console.WriteLine("Invalid game selection!");
 
-                return -1;
-            }
+        //        return -1;
+        //    }
 
-            return gameIndex;
-        }
+        //    return gameIndex;
+        //}
 
 
-        static int addCopyWithSearchIndex()
+        static int addCopyWithSearchIndex(Stock stock)
         {
             Console.Clear();
             Console.WriteLine(searchMenu);
@@ -357,7 +365,7 @@
 
 
 
-            if (Stock.Games.Count == 0)
+            if (stock.Games.Count == 0)
             {
                 Console.Clear();
                 Console.WriteLine(gameManager);
@@ -382,17 +390,17 @@
                 {
                     case ConsoleKey.D1:
                     case ConsoleKey.NumPad1:
-                        gameIndex = SearchForAGameByNameWithIndex();
+                        gameIndex = SearchForAGameByNameWithIndex(stock);
 
                         break;
                     case ConsoleKey.D2:
                     case ConsoleKey.NumPad2:
-                        gameIndex = SearchForAGenreWithIndex();
+                        gameIndex = SearchForAGenreWithIndex(stock);
 
                         break;
                     case ConsoleKey.D3:
                     case ConsoleKey.NumPad3:
-                        gameIndex = SearchByNumberOfPlayersWithIndex();
+                        gameIndex = SearchByNumberOfPlayersWithIndex(stock);
 
                         break;
 
@@ -405,7 +413,7 @@
          
         }
 
-        static int PrintCopyWithSearchIndex()
+        static int PrintCopyWithSearchIndex(Stock stock)
         {
             Console.Clear();
             Console.WriteLine(searchMenu);
@@ -413,7 +421,7 @@
 
 
 
-            if (Stock.Games.Count == 0)
+            if (stock.Games.Count == 0)
             {
                 Console.Clear();
                 Console.WriteLine(gameManager);
@@ -438,17 +446,17 @@
                 {
                     case ConsoleKey.D1:
                     case ConsoleKey.NumPad1:
-                        gameIndex = SearchForAGameByNameWithIndex();
+                        gameIndex = SearchForAGameByNameWithIndex(stock);
 
                         break;
                     case ConsoleKey.D2:
                     case ConsoleKey.NumPad2:
-                        gameIndex = SearchForAGenreWithIndex();
+                        gameIndex = SearchForAGenreWithIndex(stock);
 
                         break;
                     case ConsoleKey.D3:
                     case ConsoleKey.NumPad3:
-                        gameIndex = SearchByNumberOfPlayersWithIndex();
+                        gameIndex = SearchByNumberOfPlayersWithIndex(stock);
 
                         break;
 
@@ -460,13 +468,13 @@
             return gameIndex;
 
         }
-        static void SearchForAGameByName()
+        static void SearchForAGameByName(Stock stock)
         {
             Console.Clear();
 
             Console.WriteLine(searchMenu);
 
-            if (Stock.Games.Count == 0)
+            if (stock.Games.Count == 0)
             {
                 Console.SetCursorPosition(0, 11); // Move cursor below the menu (line 11)
                 Console.Write("There is no games in the stock!".PadRight(Console.WindowWidth));
@@ -482,7 +490,7 @@
                 string search = Console.ReadLine();
                 bool foundGame = false;
 
-                foreach (var game in Stock.Games)
+                foreach (var game in stock.Games)
                 {
                     if (game.GameName.ToLower() == search.ToLower())
                     {
@@ -503,7 +511,7 @@
             }
         }
 
-        static int SearchForAGameByNameWithIndex()
+        static int SearchForAGameByNameWithIndex(Stock stock)
         {
 
             Console.Clear();
@@ -520,11 +528,11 @@
             bool foundGame = false;
 
 
-            for (int i = 0; i < Stock.Games.Count; i++)
+            for (int i = 0; i < stock.Games.Count; i++)
             {
-                if (Stock.Games[i].GameName.ToLower() == search.ToLower())
+                if (stock.Games[i].GameName.ToLower() == search.ToLower())
                 {
-                    Console.Write($"\nGame index number: {i + 1} {Stock.Games[i].GetGameDetails()}\n");
+                    Console.Write($"\nGame index number: {i + 1} {stock.Games[i].GetGameDetails()}\n");
                     foundGame = true;
                 }
             }
@@ -543,7 +551,7 @@
             int gameIndex = Convert.ToInt32(Console.ReadLine()) - 1;
 
 
-            if (gameIndex < 0 || gameIndex > Stock.Games.Count - 1)
+            if (gameIndex < 0 || gameIndex > stock.Games.Count - 1)
             {
                 Console.Clear();
                 Console.WriteLine(gameManager);
@@ -555,13 +563,13 @@
             return gameIndex;
           
         }
-        static void SearchForAGameGenre()
+        static void SearchForAGameGenre(Stock stock)
         {
             Console.Clear();
 
             Console.WriteLine(searchMenu);
 
-            if (Stock.Games.Count == 0)
+            if (stock.Games.Count == 0)
             {
                 Console.SetCursorPosition(0, 11); // Move cursor below the menu (line 11)
                 Console.Write("There is no games in the stock!".PadRight(Console.WindowWidth));
@@ -577,7 +585,7 @@
                 string search = Console.ReadLine();
                 bool foundGame = false;
 
-                foreach (var game in Stock.Games)
+                foreach (var game in stock.Games)
                 {
                     if (game.GameGenre.ToLower() == search.ToLower())
                     {
@@ -598,7 +606,7 @@
             }
         }
 
-        static int SearchForAGenreWithIndex()
+        static int SearchForAGenreWithIndex(Stock stock)
         {
 
             Console.Clear();
@@ -615,11 +623,11 @@
             bool foundGame = false;
 
 
-            for (int i = 0; i < Stock.Games.Count; i++)
+            for (int i = 0; i < stock.Games.Count; i++)
             {
-                if (Stock.Games[i].GameGenre.ToLower() == search.ToLower())
+                if (stock.Games[i].GameGenre.ToLower() == search.ToLower())
                 {
-                    Console.Write($"\nGame index number: {i + 1} {Stock.Games[i].GetGameDetails()}\n");
+                    Console.Write($"\nGame index number: {i + 1} {stock.Games[i].GetGameDetails()}\n");
                     foundGame = true;
                 }
             }
@@ -638,7 +646,7 @@
             int gameIndex = Convert.ToInt32(Console.ReadLine()) - 1;
 
 
-            if (gameIndex < 0 || gameIndex > Stock.Games.Count - 1)
+            if (gameIndex < 0 || gameIndex > stock.Games.Count - 1)
             {
                 Console.Clear();
                 Console.WriteLine(gameManager);
@@ -651,13 +659,13 @@
 
         }
 
-        static void SearchByNumberOfPlayers()
+        static void SearchByNumberOfPlayers(Stock stock)
         {
             Console.Clear();
 
             Console.WriteLine($"{searchMenu}");
 
-            if (Stock.Games.Count == 0)
+            if (stock.Games.Count == 0)
             {
                 Console.SetCursorPosition(0, 11); // Move cursor below the menu (line 11)
                 Console.Write("There is no games in the stock!".PadRight(Console.WindowWidth));
@@ -673,7 +681,7 @@
                 int search = Convert.ToInt32(Console.ReadLine());
                 bool foundGame = false;
 
-                foreach (var game in Stock.Games)
+                foreach (var game in stock.Games)
                 {
                     if (game.GameMinNumOfPlayers <= search && game.GameMaxNumOfPlayers >= search)
                     {
@@ -694,7 +702,7 @@
             }
         }
 
-        static int SearchByNumberOfPlayersWithIndex()
+        static int SearchByNumberOfPlayersWithIndex(Stock stock)
         {
 
             Console.Clear();
@@ -712,11 +720,11 @@
             bool foundGame = false;
 
 
-            for (int i = 0; i < Stock.Games.Count; i++)
+            for (int i = 0; i < stock.Games.Count; i++)
             {
-                if (Stock.Games[i].GameMinNumOfPlayers <= search && Stock.Games[i].GameMaxNumOfPlayers >= search)
+                if (stock.Games[i].GameMinNumOfPlayers <= search && stock.Games[i].GameMaxNumOfPlayers >= search)
                 {
-                    Console.Write($"\nGame index number: {i + 1} {Stock.Games[i].GetGameDetails()}\n");
+                    Console.Write($"\nGame index number: {i + 1} {stock.Games[i].GetGameDetails()}\n");
                     foundGame = true;
                 }
             }
@@ -735,7 +743,7 @@
             int gameIndex = Convert.ToInt32(Console.ReadLine()) - 1;
 
 
-            if (gameIndex < 0 || gameIndex > Stock.Games.Count - 1)
+            if (gameIndex < 0 || gameIndex > stock.Games.Count - 1)
             {
                 Console.Clear();
                 Console.WriteLine(gameManager);
@@ -747,7 +755,7 @@
             return gameIndex;
         }
 
-        static void AddBoardGame()
+        static void AddBoardGame(Stock stock)
         {
             Console.WriteLine("\n---- Add a new boardgame to the stock ----");
 
@@ -771,7 +779,7 @@
 
 
             BoardGameVariant newGame = new BoardGameVariant(name, variant, genre, minPlayers, maxPlayers, language);
-            Stock.Games.Add(newGame);
+            stock.Games.Add(newGame);
 
 
             Console.Clear();
@@ -786,7 +794,7 @@
 
         }
 
-        static void AddAGameCopy(int gameIndex)
+        static void AddAGameCopy(Stock stock, int gameIndex)
         {
             Console.WriteLine($"\nWhat's the condition of the copy?" +
                 $"\n1. \"A\" for new" +
@@ -805,11 +813,11 @@
             Console.Write($"\nEnter a price for the game: ");
             double price = Convert.ToDouble(Console.ReadLine());
 
-            var chosen = Stock.Games[gameIndex];
+            var chosen = stock.Games[gameIndex];
 
             BoardGameCopy copy = new BoardGameCopy(conditionEnum, price, chosen);
 
-            Stock.Games[gameIndex].AddCopy(copy);
+            stock.Games[gameIndex].AddCopy(copy);
 
             Console.Clear();
             Console.WriteLine("\x1b[3J");

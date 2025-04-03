@@ -6,16 +6,18 @@ namespace ProjGenspil
 {
     public class DataHandler
     {
-        public string FilePath { get; set; }
+        public string VariantFilePath { get; set; }
+        public string CopyFilePath { get; set; }
 
-        public DataHandler(string filePath)
+        public DataHandler(string variantFilePath, string copyFilePath)
         {
-            FilePath = filePath;
+            VariantFilePath = variantFilePath;
+            CopyFilePath = copyFilePath;
         }
 
         public void SaveVariantsToFile(List<BoardGameVariant> variants)
         {
-            using (StreamWriter sw = new StreamWriter(FilePath))
+            using (StreamWriter sw = new StreamWriter(VariantFilePath))
             {
                 foreach (var variant in variants)
                 {
@@ -31,7 +33,7 @@ namespace ProjGenspil
         {
             List<BoardGameCopy> copies = new List<BoardGameCopy>();
 
-            using (StreamReader sr = new StreamReader(FilePath))
+            using (StreamReader sr = new StreamReader(CopyFilePath))
             {
                 string line;
                 while ((line = sr.ReadLine()) != null)

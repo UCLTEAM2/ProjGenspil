@@ -29,6 +29,8 @@ namespace ProjGenspil
             }
         }
 
+
+
         public List<BoardGameCopy> LoadBoardGameCopyFromFile()
         {
             List<BoardGameCopy> copies = new List<BoardGameCopy>();

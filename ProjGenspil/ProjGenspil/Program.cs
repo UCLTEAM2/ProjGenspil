@@ -54,6 +54,20 @@
 
         public static void Main(string[] args)
         {
+
+            string folder = Path.Combine(projectPath, "Data");
+            Directory.CreateDirectory(folder);
+
+            string variantFile = Path.Combine(folder, "variants.txt");
+            string copyFile = Path.Combine(folder, "copies.txt");
+
+            handler = new DataHandler(variantFile, copyFile);
+
+            // Indlæs eksisterende data hvis det findes
+            variants = handler.LoadVariants();
+            copies = handler.LoadCopies(variants);
+
+
             //User menu
             Console.WriteLine(systemMenu);
 

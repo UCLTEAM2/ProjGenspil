@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjGenspil
 {
-    class Stock
+    public class Stock
     {
        
         private List<Stock> _waitingList;

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjGenspil
 {
-    class BoardGameVariant
+    public class BoardGameVariant
     {
         private string _gameName;
         private string _gameVariant;
@@ -23,7 +23,9 @@ namespace ProjGenspil
         public int GameMinNumOfPlayers { get => _gameMinNumOfPlayers; set => _gameMinNumOfPlayers = value; }
         public int GameMaxNumOfPlayers { get => _gameMaxNumOfPlayers; set => _gameMaxNumOfPlayers = value; }
         public string GameLanguage { get => _gameLanguage; set => _gameLanguage = value; }
-        public List<BoardGameCopy> BoardGameCopies { get; private set; }
+        public List<BoardGameCopy> BoardGameCopies { get; set; }
+
+        public BoardGameVariant() { }
 
         public BoardGameVariant(string gameName, string gameVariant, string gameGenre, int gameMinNumOfPlayers, int gameMaxNumOfPlayers, string gameLanguage)
         {
@@ -61,6 +63,16 @@ namespace ProjGenspil
         public List<BoardGameCopy> GetAllCopies()
         {
             return new List<BoardGameCopy>(_boardGameCopies); //Returner en kopi for at undgå ekstern manipulation
+        }
+
+        public override string ToString()
+        {
+            string result = $"{GetGameDetails}\n";
+            foreach (var copy in BoardGameCopies)
+            {
+                result += copy.ToString() + "\n";
+            }
+            return result;
         }
 
     }

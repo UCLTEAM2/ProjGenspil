@@ -67,30 +67,46 @@ namespace ProjGenspil
 
         public override string ToString()
         {
-            string result = $"{GetGameDetails}\n";
+            string variantData = $"{GameName},{GameVariant},{GameGenre},{GameMinNumOfPlayers},{GameMaxNumOfPlayers},{GameLanguage}";
+            variantData += $"\n{BoardGameCopies.Count}";
+
             foreach (var copy in BoardGameCopies)
             {
-                result += copy.ToString() + "\n";
+                variantData += $"\n{copy.ToString()}";
             }
-            return result;
+            return variantData;
         }
 
-        public static BoardGameVariant FromString(string data)
+
+        public static BoardGameVariant FromString(string[] lines, ref int currentLine)
+    {
+        // Parse the BoardGameVariant details
+        string[] variantParts = lines[currentLine].Split(',');
+        var variant = new BoardGameVariant
         {
-            string[] parts = data.Split(','); // Opdeler strengen baseret på komma
-            return new BoardGameVariant(
+            GameName = variantParts[0],
+            GameVariant = variantParts[1],
+            GameGenre = variantParts[2],
+            GameMinNumOfPlayers = int.Parse(variantParts[3]),
+            GameMaxNumOfPlayers = int.Parse(variantParts[4]),
+            GameLanguage = variantParts[5]
+        };
 
+        // Move to the next line (number of copies)
+        currentLine++;
+        int numCopies = int.Parse(lines[currentLine]);
 
-                parts[0], // Navn
-                parts[1], // Variant
-                parts[2], // Genre
-                int.Parse(parts[3]), // Minimum antal spillere
-                int.Parse(parts[4]), // Maksimum antal spillere
-                parts[5] // Sprog
-
-
-            );
+        // Parse each copy
+        for (int i = 0; i < numCopies; i++)
+        {
+            currentLine++;
+            var copy = BoardGameCopy.FromString(lines[currentLine]);
+            copy.BoardGameVariant = variant; // Set the reference back to the variant
+            variant.AddCopy(copy);
         }
+
+        return variant;
+    }
 
     }
 }

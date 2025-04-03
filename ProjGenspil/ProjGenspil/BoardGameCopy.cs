@@ -14,8 +14,8 @@ namespace ProjGenspil
 
         public Condition GameCondition { get => _gameCondition; set => _gameCondition = value; }
         public double GamePrice { get => _gamePrice; set => _gamePrice = value; }
-        public BoardGameVariant BoardGameVariant { get; set; }
-      
+        public BoardGameVariant BoardGameVariant { get => _boardGameVariant; set => _boardGameVariant = value; }
+
         // Parameterless constructor
         public BoardGameCopy() { }
 
@@ -28,9 +28,9 @@ namespace ProjGenspil
 
         public BoardGameCopy(Condition condition, double price, BoardGameVariant variant)
         {
-            GameCondition = condition;
-            GamePrice = price;
-            BoardGameVariant = variant;
+            _gameCondition = condition;
+            _gamePrice = price;
+            _boardGameVariant = variant;
         }
 
 
@@ -46,7 +46,7 @@ namespace ProjGenspil
             string gameVariantName = BoardGameVariant != null ? BoardGameVariant.GameName : "No Game Name";
             string gameVariantVariant = BoardGameVariant != null ? BoardGameVariant.GameVariant : "No Game Variant";
 
-            return $"{GameCondition},{GamePrice},{gameVariantName},{gameVariantVariant}";
+            return $"{GameCondition},{GamePrice}";
         }
 
         public static BoardGameCopy FromString(string data)
@@ -56,11 +56,6 @@ namespace ProjGenspil
             {
                 GameCondition = (Condition)Enum.Parse(typeof(Condition), parts[0]),
                 GamePrice = double.Parse(parts[1]),
-                BoardGameVariant = new BoardGameVariant
-                {
-                    GameName = parts[2],
-                    GameVariant = parts[3]
-                }
             };
         }
     }

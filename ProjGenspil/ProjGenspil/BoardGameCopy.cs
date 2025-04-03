@@ -23,6 +23,13 @@ namespace ProjGenspil
             _gamePrice = gamePrice;
         }
 
+        public BoardGameCopy(Condition condition, double price, BoardGameVariant variant)
+        {
+            GameCondition = condition;
+            GamePrice = price;
+            Variant = variant;
+        }
+
         // Parameterless constructor
         public BoardGameCopy() { }
 

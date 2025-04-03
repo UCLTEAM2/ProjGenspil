@@ -65,8 +65,8 @@
             handler = new DataHandler(variantFile, copyFile);
 
             // Indlæs eksisterende data hvis det findes
-            variants = handler.LoadVariants();
-            copies = handler.LoadCopies(variants);
+            Stock.Games = handler.LoadVariantsFromFile();
+            copies = handler.LoadBoardGameCopyFromFile(variants);
 
 
             //User menu
@@ -802,7 +802,7 @@
             //Console.WriteLine($"\n\"A\" for new\n\"B\" for slightly used\n\"C\" for used\n\"D\" for a bit worn\n\"E\" for very worn\n\"F\" for trash");
             
             //char condition = Convert.ToChar(Console.ReadLine().ToUpper());
-            Console.WriteLine($"\n Enter a price for the game");
+            Console.Write($"\nEnter a price for the game: ");
             double price = Convert.ToDouble(Console.ReadLine());
 
             BoardGameCopy copy = new BoardGameCopy(conditionEnum, price);

@@ -81,12 +81,12 @@ namespace ProjGenspil
             return new BoardGameVariant(
 
 
-                parts[0], // Anden del er navnet
-                parts[1], // Tredje del er lønnen
-                parts[2], // Fjerde del er afdelingens navn
-                int.Parse(parts[3]),
-                int.Parse(parts[4]),
-                parts[5]
+                parts[0], // Navn
+                parts[1], // Variant
+                parts[2], // Genre
+                int.Parse(parts[3]), // Minimum antal spillere
+                int.Parse(parts[4]), // Maksimum antal spillere
+                parts[5] // Sprog
 
 
             );

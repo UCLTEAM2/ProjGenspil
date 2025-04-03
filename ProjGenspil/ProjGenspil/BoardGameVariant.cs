@@ -75,5 +75,22 @@ namespace ProjGenspil
             return result;
         }
 
+        public static BoardGameVariant FromString(string data)
+        {
+            string[] parts = data.Split(','); // Opdeler strengen baseret på komma
+            return new BoardGameVariant(
+
+
+                parts[0], // Anden del er navnet
+                parts[1], // Tredje del er lønnen
+                parts[2], // Fjerde del er afdelingens navn
+                int.Parse(parts[3]),
+                int.Parse(parts[4]),
+                parts[5]
+
+
+            );
+        }
+
     }
 }

@@ -14,6 +14,7 @@ namespace ProjGenspil
         private int _quantity;
 
         public static List<BoardGameVariant> Games = new List<BoardGameVariant>();
+        public static List<BoardGameCopy> Copies = new List<BoardGameCopy>();
 
         //public int Quantity { get => _quantity; set => _quantity = value; }
         //public List<Stock> WaitingList { get => _waitingList; set => _waitingList = value; }

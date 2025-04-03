@@ -1,7 +1,4 @@
-﻿
-
-
-namespace ProjGenspil
+﻿namespace ProjGenspil
 {
     class Program
     {

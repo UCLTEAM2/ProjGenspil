@@ -54,7 +54,7 @@
 
         public static void Main(string[] args)
         {
-
+            string projectPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
             string folder = Path.Combine(projectPath, "Data");
             Directory.CreateDirectory(folder);
 

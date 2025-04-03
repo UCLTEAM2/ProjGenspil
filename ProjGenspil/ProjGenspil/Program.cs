@@ -805,7 +805,9 @@
             Console.Write($"\nEnter a price for the game: ");
             double price = Convert.ToDouble(Console.ReadLine());
 
-            BoardGameCopy copy = new BoardGameCopy(conditionEnum, price);
+            var chosen = Stock.Games[gameIndex];
+
+            BoardGameCopy copy = new BoardGameCopy(conditionEnum, price, chosen);
 
             Stock.Games[gameIndex].AddCopy(copy);
 

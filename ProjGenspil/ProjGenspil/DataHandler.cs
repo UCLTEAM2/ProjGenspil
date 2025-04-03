@@ -46,29 +46,5 @@ namespace ProjGenspil
             }
             return copies;
         }
-
-        //public List<BoardGameVariant> LoadVariantsFromFile()
-        //{
-        //    List<BoardGameVariant> variants = new List<BoardGameVariant>();
-        //    if (File.Exists(FilePath))
-        //    {
-        //        using (StreamReader sr = new StreamReader(FilePath))
-        //        {
-        //            string line;
-        //            while ((line = sr.ReadLine()) != null)
-        //            {
-        //                BoardGameCopy copy = BoardGameCopy.FromString(line);
-        //                BoardGameVariant variant = new BoardGameVariant
-        //                {
-        //                    GameName = copy.BoardGameVariant.GameName,
-        //                    GameVariant = copy.BoardGameVariant.GameVariant,
-        //                    BoardGameCopies = new List<BoardGameCopy> { copy }
-        //                };
-        //                variants.Add(variant);
-        //            }
-        //        }
-        //    }
-        //    return variants;
-        //}
     }
 }

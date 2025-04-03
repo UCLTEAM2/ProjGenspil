@@ -1,4 +1,7 @@
-﻿namespace ProjGenspil
+﻿
+
+
+namespace ProjGenspil
 {
     class Program
     {
@@ -51,6 +54,7 @@
 |                                                  |
 ----------------------------------------------------";
 
+        static DataHandler handler;
 
         public static void Main(string[] args)
         {

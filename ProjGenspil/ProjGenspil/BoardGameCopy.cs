@@ -15,6 +15,9 @@ namespace ProjGenspil
         public Condition GameCondition { get => _gameCondition; set => _gameCondition = value; }
         public double GamePrice { get => _gamePrice; set => _gamePrice = value; }
         public BoardGameVariant BoardGameVariant { get; set; }
+      
+        // Parameterless constructor
+        public BoardGameCopy() { }
 
         // Existing constructor
         public BoardGameCopy(Condition gameCondition, double gamePrice)
@@ -27,11 +30,9 @@ namespace ProjGenspil
         {
             GameCondition = condition;
             GamePrice = price;
-            Variant = variant;
+            BoardGameVariant = variant;
         }
 
-        // Parameterless constructor
-        public BoardGameCopy() { }
 
         public string GetCopyDetails()
         {

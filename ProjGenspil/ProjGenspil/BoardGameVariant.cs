@@ -68,48 +68,65 @@ namespace ProjGenspil
             return new List<BoardGameCopy>(_boardGameCopies); //Returner en kopi for at undgå ekstern manipulation
         }
 
+        //public override string ToString()
+        //{
+        //    string variantData = $"{GameName},{GameVariant},{GameGenre},{GameMinNumOfPlayers},{GameMaxNumOfPlayers},{GameLanguage}";
+        //    variantData += $"\n{BoardGameCopies.Count}";
+
+        //    foreach (var copy in BoardGameCopies)
+        //    {
+        //        variantData += $"\n{copy.ToString()}";
+        //    }
+        //    return variantData;
+        //}
+
         public override string ToString()
         {
-            string variantData = $"{GameName},{GameVariant},{GameGenre},{GameMinNumOfPlayers},{GameMaxNumOfPlayers},{GameLanguage}";
-            variantData += $"\n{BoardGameCopies.Count}";
+            var variantData = new System.Text.StringBuilder();
+            variantData.Append($"{GameName},{GameVariant},{GameGenre},{GameMinNumOfPlayers},{GameMaxNumOfPlayers},{GameLanguage}");
+            variantData.AppendLine(); // Adds platform-specific line ending (\r\n on Windows)
+            variantData.Append($"{BoardGameCopies.Count}");
+            variantData.AppendLine(); // Adds platform-specific line ending
 
             foreach (var copy in BoardGameCopies)
             {
-                variantData += $"\n{copy.ToString()}";
+                variantData.Append($"{copy.ToString()}");
+                variantData.AppendLine(); // Adds platform-specific line ending
             }
-            return variantData;
+
+            return variantData.ToString();
         }
 
 
         public static BoardGameVariant FromString(string[] lines, ref int currentLine)
-    {
-        // Parse the BoardGameVariant details
-        string[] variantParts = lines[currentLine].Split(',');
-        var variant = new BoardGameVariant
         {
-            GameName = variantParts[0],
-            GameVariant = variantParts[1],
-            GameGenre = variantParts[2],
-            GameMinNumOfPlayers = int.Parse(variantParts[3]),
-            GameMaxNumOfPlayers = int.Parse(variantParts[4]),
-            GameLanguage = variantParts[5]
-        };
+            // Parse the BoardGameVariant details
+            string[] variantParts = lines[currentLine].Split(',');
+            var variant = new BoardGameVariant
+            {
+                GameName = variantParts[0],
+                GameVariant = variantParts[1],
+                GameGenre = variantParts[2],
+                GameMinNumOfPlayers = int.Parse(variantParts[3]),
+                GameMaxNumOfPlayers = int.Parse(variantParts[4]),
+                GameLanguage = variantParts[5]
+            };
 
-        // Move to the next line (number of copies)
-        currentLine++;
-        int numCopies = int.Parse(lines[currentLine]);
-
-        // Parse each copy
-        for (int i = 0; i < numCopies; i++)
-        {
+            // Move to the next line (number of copies)
             currentLine++;
-            var copy = BoardGameCopy.FromString(lines[currentLine]);
-            copy.BoardGameVariant = variant; // Set the reference back to the variant
-            variant.AddCopy(copy);
-        }
+            int numCopies = int.Parse(lines[currentLine]);
 
-        return variant;
-    }
+            // Parse each copy
+            for (int i = 0; i < numCopies; i++)
+            {
+                currentLine++;
+                var copy = BoardGameCopy.FromString(lines[currentLine]);
+                copy.BoardGameVariant = variant; // Set the reference back to the variant
+                variant.AddCopy(copy);
+            }
+
+         return variant;
+        }
 
     }
 }

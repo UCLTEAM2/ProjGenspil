@@ -1,4 +1,0 @@
-Monopoly,Original,Board,2,8,Dansk
-2
-A,50
-A,50

@@ -54,6 +54,9 @@
         static string projectPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
         static string folder = Path.Combine(projectPath, "Data");
         static string gamesFile = Path.Combine(folder, "games.txt");
+        static string waitingListFile = Path.Combine(folder, "waitinglist.txt");
+        static string requestListFile = Path.Combine(folder, "requestlist.txt");
+
         //static DataHandler handler;
 
         public static void Main(string[] args)
@@ -112,7 +115,6 @@
                                 case ConsoleKey.D2:
                                 case ConsoleKey.NumPad2:
                                     //Add a new copy to the stock, with a given condition and price and adds it to the specific game.
-                                    //TODO: Method, that opens up stock list, find the list e.g Monopoly and adds a copy to it, with a given condition and price.
                                     Console.Clear();
 
                                     int gameIndexForCopy = addCopyWithSearchIndex(stock);
@@ -133,8 +135,7 @@
                                 case ConsoleKey.D4:
                                 case ConsoleKey.NumPad4:
                                     //Remove a copy from the stock - Based on Index
-                                    //TODO: Method that ask a user to enter the games name, and then the method shows a list of the game, with different conditions if any. Method is located in the BoardGame class.
-                                    Console.Clear();
+                                     Console.Clear();
                                         DeleteAGameCopy(stock);
 
                                         break;
@@ -163,6 +164,17 @@
                                     if (gameIndex != -1)
                                     {
                                         PrintAllCopies(stock, gameIndex);
+
+                                    }
+                                        break;
+                                case ConsoleKey.D8:
+                                case ConsoleKey.NumPad8:
+                                    //Remove all instances of a game
+                                    int deleteGameIndex = PrintCopyWithSearchIndex(stock);
+
+                                    if (deleteGameIndex != -1)
+                                    {
+                                        DeleteGameInstance(stock, deleteGameIndex);
 
                                     }
                                         break;
@@ -295,6 +307,8 @@
 
             }
         }
+
+       
 
         static void PrintAllCopies(Stock stock, int gameIndex)
         {
@@ -904,9 +918,24 @@
 
             Console.WriteLine(gameManager);
             Console.SetCursorPosition(0, 16); // Move cursor below the menu (line 15)
-            Console.WriteLine("The copy has been removed to the game".PadRight(Console.WindowWidth));
+            Console.WriteLine("The copy has been removed from the game".PadRight(Console.WindowWidth));
             Console.SetCursorPosition(0, 16); // Move cursor below the menu (line 15)
 
+        }
+
+        static void DeleteGameInstance(Stock stock, int deleteGameIndex)
+        {
+            stock.Games.RemoveAt(deleteGameIndex);
+            stock.SaveToFile(gamesFile);
+
+            Console.Clear();
+            Console.WriteLine("\x1b[3J");
+            Console.Clear();
+
+            Console.WriteLine(gameManager);
+            Console.SetCursorPosition(0, 16); // Move cursor below the menu (line 15)
+            Console.WriteLine("The game variant and it's copies,  has been removed from the stock".PadRight(Console.WindowWidth));
+            Console.SetCursorPosition(0, 16); // Move cursor below the menu (line 15)
         }
 
 

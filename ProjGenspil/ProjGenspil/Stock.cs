@@ -19,9 +19,11 @@ namespace ProjGenspil
         {
             using (var writer = new StreamWriter(filePath))
             {
+                //writer.NewLine = "\r\n";
                 foreach (var variant in Games)
                 {
-                    writer.WriteLine(variant.ToString());
+                    
+                    writer.Write(variant.ToString());
                 }
             }
         }

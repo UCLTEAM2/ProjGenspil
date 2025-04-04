@@ -51,16 +51,15 @@
 |                                                  |
 ----------------------------------------------------";
 
+        static string projectPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+        static string folder = Path.Combine(projectPath, "Data");
+        static string gamesFile = Path.Combine(folder, "games.txt");
         //static DataHandler handler;
 
         public static void Main(string[] args)
         {
-            string projectPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
-            string folder = Path.Combine(projectPath, "Data");
-            Directory.CreateDirectory(folder);
 
-            string gamesFile = Path.Combine(folder, "games.txt");
-            
+            Directory.CreateDirectory(folder);
             // Create a single Stock instance
             var stock = new Stock();
 
@@ -68,14 +67,14 @@
             stock.LoadFromFile(gamesFile);
 
             // Verify the contents of the Stock
-            foreach (var loadedVariant in stock.Games)
-            {
-                Console.WriteLine($"Variant: {loadedVariant.GameName} {loadedVariant.GameVariant}");
-                foreach (var copy in loadedVariant.BoardGameCopies)
-                {
-                    Console.WriteLine($"  Copy: {copy.GameCondition}, {copy.GamePrice}");
-                }
-            }
+            //foreach (var loadedVariant in stock.Games)
+            //{
+            //    Console.WriteLine($"Variant: {loadedVariant.GameName} {loadedVariant.GameVariant}");
+            //    foreach (var copy in loadedVariant.BoardGameCopies)
+            //    {
+            //        Console.WriteLine($"  Copy: {copy.GameCondition}, {copy.GamePrice}");
+            //    }
+            //}
 
             //User menu
             Console.WriteLine(systemMenu);
@@ -780,7 +779,7 @@
 
             BoardGameVariant newGame = new BoardGameVariant(name, variant, genre, minPlayers, maxPlayers, language);
             stock.Games.Add(newGame);
-
+            stock.SaveToFile(gamesFile);
 
             Console.Clear();
 
@@ -818,6 +817,7 @@
             BoardGameCopy copy = new BoardGameCopy(conditionEnum, price, chosen);
 
             stock.Games[gameIndex].AddCopy(copy);
+            stock.SaveToFile(gamesFile);
 
             Console.Clear();
             Console.WriteLine("\x1b[3J");

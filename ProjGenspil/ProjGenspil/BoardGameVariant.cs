@@ -14,8 +14,8 @@ namespace ProjGenspil
         private int _gameMinNumOfPlayers;
         private int _gameMaxNumOfPlayers;
         private string _gameLanguage;
-        private List<BoardGameCopy> _boardGameCopies;
-        
+        private List<BoardGameCopy> _boardGameCopies = new List<BoardGameCopy>();
+
 
         public string GameName { get => _gameName; set => _gameName = value; }
         public string GameVariant { get => _gameVariant; set => _gameVariant = value; }
@@ -23,7 +23,7 @@ namespace ProjGenspil
         public int GameMinNumOfPlayers { get => _gameMinNumOfPlayers; set => _gameMinNumOfPlayers = value; }
         public int GameMaxNumOfPlayers { get => _gameMaxNumOfPlayers; set => _gameMaxNumOfPlayers = value; }
         public string GameLanguage { get => _gameLanguage; set => _gameLanguage = value; }
-        public List<BoardGameCopy> BoardGameCopies { get; set; }
+        public List<BoardGameCopy> BoardGameCopies => _boardGameCopies ??= new List<BoardGameCopy>();
 
         public BoardGameVariant() { }
 

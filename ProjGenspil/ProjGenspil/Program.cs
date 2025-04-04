@@ -132,13 +132,12 @@
 
                                 case ConsoleKey.D4:
                                 case ConsoleKey.NumPad4:
-                                    //Remove a game from the stock - Based on Index
+                                    //Remove a copy from the stock - Based on Index
                                     //TODO: Method that ask a user to enter the games name, and then the method shows a list of the game, with different conditions if any. Method is located in the BoardGame class.
                                     Console.Clear();
+                                        DeleteAGameCopy(stock);
 
-                                    //int deleteIndex = 
-
-                                    break;
+                                        break;
 
                                 case ConsoleKey.D5:
                                 case ConsoleKey.NumPad5:
@@ -830,8 +829,83 @@
 
         }
 
-        static void DeleteAGameCopy(int gameIndex)
+        static void DeleteAGameCopy(Stock stock)
         {
+            Console.WriteLine(gameManager);
+            Console.SetCursorPosition(0, 16); // Move cursor below the menu (line 16)
+            Console.Write("Enter the games name: ".PadRight(Console.WindowWidth));
+            Console.SetCursorPosition("Enter the games name: ".Length, 16);
+
+
+
+            string search = Console.ReadLine();
+            bool foundGame = false;
+            bool foundCopy = false;
+
+            for (int i = 0; i < stock.Games.Count; i++)
+            {
+                if (stock.Games[i].GameName.ToLower() == search.ToLower())
+                {
+                    Console.Write($"\nGame index number: {i + 1} {stock.Games[i].GetGameDetails()}\n");
+                    foundGame = true;
+                }
+            }
+            if (!foundGame)
+            {
+                Console.Clear();
+                Console.WriteLine(gameManager);
+                Console.SetCursorPosition(0, 16);
+                Console.Write($"No games with the name \"{search}\" was found!");
+                //return -1;
+            }
+
+            Console.Write("\nEnter the games index number: ");
+
+
+            int gameIndex = Convert.ToInt32(Console.ReadLine()) - 1;
+
+
+            if (gameIndex < 0 || gameIndex > stock.Games.Count - 1)
+            {
+                Console.Clear();
+                Console.WriteLine(gameManager);
+                Console.SetCursorPosition(0, 16); // Move cursor below the menu (line 15)
+                Console.WriteLine("Invalid input, please try again!".PadRight(Console.WindowWidth)); // Clear line
+                Console.SetCursorPosition(0, 16); // Move cursor below the menu (line 15)
+                //return -1;
+            }
+            
+
+            for (int i = 0; i < stock.Games[gameIndex].BoardGameCopies.Count; i++)
+            {
+                Console.Write($"\nCopy index number: {i + 1} \n{stock.Games[gameIndex].BoardGameCopies[i].GetCopyDetails()}\n");
+                
+            }
+
+
+            int copyIndex = Convert.ToInt32(Console.ReadLine()) - 1;
+
+            if (copyIndex < 0 || copyIndex > stock.Games[gameIndex].BoardGameCopies.Count - 1)
+            {
+                Console.Clear();
+                Console.WriteLine(gameManager);
+                Console.SetCursorPosition(0, 16); // Move cursor below the menu (line 15)
+                Console.WriteLine("Invalid input, please try again!".PadRight(Console.WindowWidth)); // Clear line
+                Console.SetCursorPosition(0, 16); // Move cursor below the menu (line 15)
+                //return -1;
+            }
+
+            stock.Games[gameIndex].BoardGameCopies.RemoveAt(copyIndex);
+            stock.SaveToFile(gamesFile);
+
+            Console.Clear();
+            Console.WriteLine("\x1b[3J");
+            Console.Clear();
+
+            Console.WriteLine(gameManager);
+            Console.SetCursorPosition(0, 16); // Move cursor below the menu (line 15)
+            Console.WriteLine("The copy has been removed to the game".PadRight(Console.WindowWidth));
+            Console.SetCursorPosition(0, 16); // Move cursor below the menu (line 15)
 
         }
 

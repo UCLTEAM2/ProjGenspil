@@ -896,7 +896,7 @@
                 
             }
 
-
+            Console.Write("\nEnter the copy index number: ");
             int copyIndex = Convert.ToInt32(Console.ReadLine()) - 1;
 
             if (copyIndex < 0 || copyIndex > stock.Games[gameIndex].BoardGameCopies.Count - 1)

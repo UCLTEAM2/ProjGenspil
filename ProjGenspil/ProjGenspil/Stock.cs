@@ -44,19 +44,5 @@ namespace ProjGenspil
             }
         }
 
-
-
-        //public static List<BoardGameVariant> Games = new List<BoardGameVariant>();
-        //public static List<BoardGameCopy> Copies = new List<BoardGameCopy>();
-
-        //public int Quantity { get => _quantity; set => _quantity = value; }
-        //public List<Stock> WaitingList { get => _waitingList; set => _waitingList = value; }
-        //public List<Stock> Requests { get => _requests; set => _requests = value; }
-
-        //Matador
-        //monopoly
-        //Yatzy
-        //Matador junior
-        //Matador Lego
     }
 }

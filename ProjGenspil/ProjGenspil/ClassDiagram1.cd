@@ -1,32 +1,53 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="ProjGenspil.Stock">
-    <Position X="4.75" Y="2.25" Width="1.5" />
+    <Position X="2.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>YAAAAAAAAAAAAAABQAAAAAAAAAAAAAAAAAAEgBAAAAQ=</HashCode>
+      <HashCode>QAAAAAAgAAAAAAABQAAAAAAAAAAAAAAAAAAEAAAAEAA=</HashCode>
       <FileName>Stock.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProjGenspil.Employee">
-    <Position X="2.5" Y="2.25" Width="1.5" />
+    <Position X="0.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQIIACAIAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Employee.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProjGenspil.Customer">
-    <Position X="9.5" Y="2.25" Width="1.5" />
+    <Position X="6.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAQAAAgAAAAAAAAQAAQAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Customer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="ProjGenspil.BoardGameVariant">
-    <Position X="7.25" Y="2.25" Width="1.5" />
+    <Position X="4.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAQBQAAAEAAAAAAAAAAAAAABAAAAAAAAAAhEgAAAEA=</HashCode>
+      <HashCode>AgAgBQAAAEAAAAAkEAAIEAAQBAAAAAFAAAAhEAAAAEI=</HashCode>
       <FileName>BoardGameVariant.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="ProjGenspil.BoardGameCopy">
+    <Position X="8.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAgAAIAAAAAEEAAAAAAAACAAAAAIAAAAAAFAAAA=</HashCode>
+      <FileName>BoardGameCopy.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjGenspil.Program">
+    <Position X="12.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AECEBAQAAIBAAAQIAAAABAAABEAAACAAAEEARMABCgM=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="ProjGenspil.Condition">
+    <Position X="10.75" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAtgEAAAA=</HashCode>
+      <FileName>Condition.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
   <Font Name="Segoe UI" Size="9" />
 </ClassDiagram>

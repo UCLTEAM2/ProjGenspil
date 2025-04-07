@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 namespace ProjGenspil
 {
      public class SearchHandler
-    {
-        static string systemMenu = Program.systemMenu;
-        static string gameManager = Program.gameManager;
-        static string searchMenu = Program.searchMenu;
-        static string stockManager = Program.stockManager;
+     {
+        
+        public static string gameManager = Program.gameManager;
+        public static string searchMenu = Program.searchMenu;
+        
 
         public static void SearchForAGameByName(Stock stock)
         {

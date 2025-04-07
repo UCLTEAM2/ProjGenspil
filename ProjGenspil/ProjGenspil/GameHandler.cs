@@ -10,14 +10,14 @@ namespace ProjGenspil
 
     class GameHandler
     {
-        static string systemMenu = Program.systemMenu;
+        
         static string gameManager = Program.gameManager;
-        static string searchMenu = Program.searchMenu;
-        static string stockManager = Program.stockManager;
+        public static string searchMenu = Program.searchMenu;
 
-        static string projectPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
-        static string folder = Path.Combine(projectPath, "Data");
-        static string gamesFile = Path.Combine(folder, "games.txt");
+
+        public static string projectPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+        public static string folder = Path.Combine(projectPath, "Data");
+        public static string gamesFile = Path.Combine(folder, "games.txt");
 
 
         public static void DeleteGameInstance(Stock stock, int deleteGameIndex)

@@ -129,8 +129,15 @@
                                 case ConsoleKey.NumPad3:
                                     //Edit a games details - Based on Index
                                     //TODO: Method that ask user to enter name of the game, then shows a list of the game with different conditions, and prompts the user to pick one and then what details to change The Method is located in the BoardGame class.
+                                    Console.Clear();
 
-                                    break;
+                                    int editIndex = SearchForAGameByNameWithIndex(stock);
+
+                                    if (editIndex != -1)
+                                    {
+                                        EditGameVariant(stock, editIndex);
+                                    }
+                                        break;
 
                                 case ConsoleKey.D4:
                                 case ConsoleKey.NumPad4:
@@ -936,6 +943,11 @@
             Console.SetCursorPosition(0, 16); // Move cursor below the menu (line 15)
             Console.WriteLine("The game variant and it's copies,  has been removed from the stock".PadRight(Console.WindowWidth));
             Console.SetCursorPosition(0, 16); // Move cursor below the menu (line 15)
+        }
+
+        static void EditGameVariant(Stock stock, int editIndex)
+        {
+            
         }
 
 

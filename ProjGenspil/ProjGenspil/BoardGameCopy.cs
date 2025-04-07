@@ -26,14 +26,6 @@ namespace ProjGenspil
             _gamePrice = gamePrice;
         }
 
-        public BoardGameCopy(Condition condition, double price, BoardGameVariant variant)
-        {
-            _gameCondition = condition;
-            _gamePrice = price;
-            _boardGameVariant = variant;
-        }
-
-
         public string GetCopyDetails()
         {
             string copyDetails = $"Game condition: \"{GameCondition}\"".PadRight(Console.WindowWidth) +

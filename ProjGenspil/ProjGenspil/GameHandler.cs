@@ -95,7 +95,7 @@ namespace ProjGenspil
 
             var chosen = stock.Games[gameIndex];
 
-            BoardGameCopy copy = new BoardGameCopy(conditionEnum, price, chosen);
+            BoardGameCopy copy = new BoardGameCopy(conditionEnum, price);
 
             stock.Games[gameIndex].AddCopy(copy);
             stock.SaveToFile(gamesFile);

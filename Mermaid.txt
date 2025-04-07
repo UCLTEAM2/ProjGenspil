@@ -1,0 +1,313 @@
+```mermaid
+classDiagram
+
+    class Employee {
+
+        - employeeID: string
+
+        - employeeList: List~Employee~
+
+        - employeeName: string
+
+        + EmployeeID: string
+
+        + EmployeeList: List~Employee~
+
+        + EmployeeName: string
+
+        + LoadFromFile(): void
+
+        + SaveToFile(): void
+
+        + Employee()
+
+    }
+
+  
+
+    class Stock {
+
+        - boardGameCopies: List~BoardGameCopy~
+
+        - quantity: int
+
+        - waitingList: List~Customer~
+
+        + BoardGameCopies: List~BoardGameCopy~
+
+        + Quantity: int
+
+        + WaitingList: List~Customer~
+
+        + Stock()
+
+        + ReduceQuantity(gameCopy: BoardGameCopy, amount: int): void
+
+        + AddGame(gameCopy: BoardGameCopy, amount: int): void
+
+        + AddToWaitingList(customer: Customer, gameCopy: BoardGameCopy): void
+
+        + CheckAvailability(gameCopy: BoardGameCopy): bool
+
+        + SaveToFile(): void
+
+        + LoadFromFile(): void
+
+    }
+
+  
+
+    class Customer {
+
+        - customerName: string
+
+        - customerPhone: string
+
+        + CustomerName: string
+
+        + CustomerPhone: string
+
+        + Customer()
+
+    }
+
+  
+
+    class BoardGameVariant {
+
+        - gameGenre: string
+
+        - gameLanguage: string
+
+        - gameMaxNum: int
+
+        - gameMinNum: int
+
+        - gameName: string
+
+        - gamePrice: double
+
+        - gameVariant: string
+
+        + GameGenre: string
+
+        + GameLanguage: string
+
+        + GameMaxNum: int
+
+        + GameMinNum: int
+
+        + GameName: string
+
+        + GamePrice: double
+
+        + GameVariant: string
+
+        + BoardGameVariant()
+
+        + FromString(): BoardGameVariant
+
+        + GetCopyDetails(): string
+
+        + ToString(): string
+
+    }
+
+  
+
+    class BoardGameCopy {
+
+        - boardGameCondition: Condition
+
+        - gamePrice: double
+
+        + BoardGameCondition: Condition
+
+        + GamePrice: double
+
+        + BoardGameCopy()
+
+        + FromString(): BoardGameCopy
+
+        + GetCopyDetails(): string
+
+        + ToString(): string
+
+    }
+
+  
+
+    class Condition {
+
+        <<Enumeration>>
+
+        A
+
+        B
+
+        C
+
+        D
+
+        E
+
+        F
+
+    }
+
+  
+
+    class GameHandler {
+
+        - folder: string
+
+        - gameManager: Object
+
+        - gamesFile: string
+
+        - projectPath: string
+
+        - searchMenu: Object
+
+        - stockManager: Object
+
+        - systemMenu: Object
+
+        + Folder: string
+
+        + GameManager: Object
+
+        + GamesFile: string
+
+        + ProjectPath: string
+
+        + SearchMenu: Object
+
+        + StockManager: Object
+
+        + SystemMenu: Object
+
+        + GameHandler()
+
+        + AddAGameCopy(): void
+
+        + AddBoardGame(): void
+
+        + addCopyWithS(): void
+
+        + DeleteAGameCopy(): void
+
+        + DeleteAGameIns(): void
+
+        + EditGameVariant(): void
+
+        + PrintAllCopiesWithS(): void
+
+        + PrintTest(): void
+
+    }
+
+  
+
+    class SearchHandler {
+
+        - gameManager: Object
+
+        - searchMenu: Object
+
+        - stockManager: Object
+
+        - systemMenu: Object
+
+        + GameManager: Object
+
+        + SearchMenu: Object
+
+        + StockManager: Object
+
+        + SystemMenu: Object
+
+        + SearchHandler()
+
+        + SearchByNum(): void
+
+        + SearchByNumForAGame(): void
+
+        + SearchForAGame(): void
+
+        + SearchForAGen(): void
+
+    }
+
+  
+
+    class Program {
+
+        - folder: string
+
+        - gameManager: GameHandler
+
+        - gamesFile: string
+
+        - projectPath: string
+
+        - requestListFile: string
+
+        - stockManager: Stock
+
+        - systemMenu: Object
+
+        - waitingListFile: string
+
+        - searchHandler: SearchHandler
+
+        + Folder: string
+
+        + GameManager: GameHandler
+
+        + GamesFile: string
+
+        + ProjectPath: string
+
+        + RequestListFile: string
+
+        + StockManager: Stock
+
+        + SystemMenu: Object
+
+        + WaitingListFile: string
+
+        + SearchHandler: SearchHandler
+
+    }
+
+  
+
+    %% Relationships
+
+    Employee "1" --> "1" Program : uses
+
+    Employee "1" --> "1" Stock : accesses
+
+    Employee "1" --> "0..*" Customer : serves
+
+    Customer "0..*" o--> "1" Stock : has waiting list for
+
+    Stock "1" *-- "0..*" BoardGameVariant : stores
+
+    BoardGameCopy "1" *--> "1" BoardGameVariant : belongs to
+
+    BoardGameCopy "1" *--> "1" Condition : has
+
+    Customer "0..*" --> "0..*" BoardGameCopy : requests
+
+    Program "1" --> "1" Stock : manages
+
+    Program "1" --> "1" GameHandler : uses
+
+    Program "1" --> "1" SearchHandler : uses
+
+    GameHandler "1" --> "1" Stock : manages
+
+    SearchHandler "1" --> "1" Stock : searches
+```

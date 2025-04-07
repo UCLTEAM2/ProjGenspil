@@ -54,12 +54,22 @@ namespace ProjGenspil
 
         public string GetGameDetails()
         {
-            string details = $"\nGame name: {GameName}".PadRight(Console.WindowWidth) +
-                $"\nGame variant: {GameVariant}".PadRight(Console.WindowWidth) +
-                $"\nGenre: {GameGenre}".PadRight(Console.WindowWidth) +
-                $"\nMinimum number of players: {GameMinNumOfPlayers}".PadRight(Console.WindowWidth) +
-                $"\nMaximum number of players: {GameMaxNumOfPlayers}".PadRight(Console.WindowWidth) +
-                $"\nLanguage: {GameLanguage}".PadRight(Console.WindowWidth);
+            int windowWidth = 80; // Default width
+            try
+            {
+                windowWidth = Console.WindowWidth;
+            }
+            catch (IOException)
+            {
+                // Handle the exception or use the default width
+            }
+
+            string details = $"\nGame name: {GameName}".PadRight(windowWidth) +
+                $"\nGame variant: {GameVariant}".PadRight(windowWidth) +
+                $"\nGenre: {GameGenre}".PadRight(windowWidth) +
+                $"\nMinimum number of players: {GameMinNumOfPlayers}".PadRight(windowWidth) +
+                $"\nMaximum number of players: {GameMaxNumOfPlayers}".PadRight(windowWidth) +
+                $"\nLanguage: {GameLanguage}".PadRight(windowWidth);
             return details;
         }
 

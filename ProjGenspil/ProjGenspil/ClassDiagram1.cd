@@ -38,8 +38,22 @@
   <Class Name="ProjGenspil.Program">
     <Position X="12.75" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AECEBAQAAIBAAAQIAAAABAAABEAAACAAAEEARMABCgM=</HashCode>
+      <HashCode>AEAEBAAAAIAAAAAAAAAABAAAAAAAACAAAAAABAABAgE=</HashCode>
       <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjGenspil.SearchHandler">
+    <Position X="12.75" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AECABAQAAAAAAAQAAAAABAAAAEAAAAAAAAAAQAAACAE=</HashCode>
+      <FileName>SearchHandler.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjGenspil.GameHandler">
+    <Position X="6.5" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAUBAAAAABAAAAIAAAABAAABAAAACAAAEEAAMAAAgM=</HashCode>
+      <FileName>GameHandler.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Enum Name="ProjGenspil.Condition">

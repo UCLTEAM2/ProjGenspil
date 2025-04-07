@@ -51,9 +51,9 @@
 |                                                  |
 ----------------------------------------------------";
 
-        static string projectPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
-        static string folder = Path.Combine(projectPath, "Data");
-        static string gamesFile = Path.Combine(folder, "games.txt");
+        public static string projectPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
+        public static string folder = Path.Combine(projectPath, "Data");
+        public static string gamesFile = Path.Combine(folder, "games.txt");
         static string waitingListFile = Path.Combine(folder, "waitinglist.txt");
         static string requestListFile = Path.Combine(folder, "requestlist.txt");
 

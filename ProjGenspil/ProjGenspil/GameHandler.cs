@@ -12,12 +12,12 @@ namespace ProjGenspil
     {
         
         static string gameManager = Program.gameManager;
-        public static string searchMenu = Program.searchMenu;
+        static string searchMenu = Program.searchMenu;
 
 
-        public static string projectPath = Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName;
-        public static string folder = Path.Combine(projectPath, "Data");
-        public static string gamesFile = Path.Combine(folder, "games.txt");
+        static string projectPath = Program.projectPath;
+        static string folder = Program.folder;
+        static string gamesFile = Program.gamesFile;
 
 
         public static void DeleteGameInstance(Stock stock, int deleteGameIndex)

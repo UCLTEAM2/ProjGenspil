@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProjGenspil
+﻿namespace ProjGenspil
 {
     class Employee
     {
@@ -20,7 +14,7 @@ namespace ProjGenspil
         {
             EmployeeName = employeeName;
             EmployeeID = employeeID;
-            
+
         }
     }
 }

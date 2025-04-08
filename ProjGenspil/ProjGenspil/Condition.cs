@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProjGenspil
+﻿namespace ProjGenspil
 {
     public enum Condition
     {
@@ -15,6 +9,6 @@ namespace ProjGenspil
         E,
         F
 
-        
+
     }
 }

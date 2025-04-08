@@ -1,6 +1,4 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ProjGenspil;
-using System.Collections.Generic;
+﻿using ProjGenspil;
 
 namespace TestProject
 {

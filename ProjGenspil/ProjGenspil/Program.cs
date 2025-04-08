@@ -55,7 +55,7 @@
         public static string folder = Path.Combine(projectPath, "Data");
         public static string gamesFile = Path.Combine(folder, "games.txt");
         static string waitingListFile = Path.Combine(folder, "waitinglist.txt");
-        static string requestListFile = Path.Combine(folder, "requestlist.txt");
+        public static string requestFile = Path.Combine(folder, "requestlist.txt");
 
         //static DataHandler handler;
 
@@ -68,6 +68,7 @@
 
             // Load existing data from the file (if it exists)
             stock.LoadFromFile(gamesFile);
+            stock.LoadFromFileRequest(requestFile);
 
             //User menu
             Console.WriteLine(systemMenu);
@@ -87,7 +88,7 @@
                         // Game manager
                         Console.Clear();
                         Console.WriteLine(gameManager);
-                         Console.SetCursorPosition(0, 16); // Move cursor below the menu (line 15)
+                        Console.SetCursorPosition(0, 16); // Move cursor below the menu (line 15)
                         bool innerGameLoop = true;
                         while (innerGameLoop)
                         {
@@ -114,7 +115,7 @@
                                         GameHandler.AddAGameCopy(stock, gameIndexForCopy);
                                     }
 
-                                        break;
+                                    break;
                                 case ConsoleKey.D3:
                                 case ConsoleKey.NumPad3:
                                     //Edit a games details - Based on Index
@@ -127,15 +128,15 @@
                                     {
                                         GameHandler.EditGameVariant(stock, editIndex);
                                     }
-                                        break;
+                                    break;
 
                                 case ConsoleKey.D4:
                                 case ConsoleKey.NumPad4:
                                     //Remove a copy from the stock - Based on Index
-                                     Console.Clear();
-                                        GameHandler.DeleteAGameCopy(stock);
+                                    Console.Clear();
+                                    GameHandler.DeleteAGameCopy(stock);
 
-                                        break;
+                                    break;
 
                                 case ConsoleKey.D5:
                                 case ConsoleKey.NumPad5:
@@ -148,6 +149,8 @@
                                 case ConsoleKey.NumPad6:
                                     //Make a request on a game 
                                     //TODO: A method that makes a request on a game, that does not exist in the stock, and adds it to a list of requested games.
+                                    GameHandler.AddGameRequest(stock);
+
 
                                     break;
 
@@ -163,7 +166,7 @@
                                         GameHandler.PrintAllCopies(stock, gameIndex);
 
                                     }
-                                        break;
+                                    break;
                                 case ConsoleKey.D8:
                                 case ConsoleKey.NumPad8:
                                     //Remove all instances of a game
@@ -174,7 +177,7 @@
                                         GameHandler.DeleteGameInstance(stock, deleteGameIndex);
 
                                     }
-                                        break;
+                                    break;
 
                                 case ConsoleKey.Escape:
                                     Console.Clear();
@@ -183,9 +186,9 @@
                                 default:
                                     Console.Clear();
                                     Console.WriteLine(gameManager);
-                                     Console.SetCursorPosition(0, 16); // Move cursor below the menu (line 15)
+                                    Console.SetCursorPosition(0, 16); // Move cursor below the menu (line 15)
                                     Console.WriteLine("Invalid input, please try again!".PadRight(Console.WindowWidth)); // Clear line
-                                     Console.SetCursorPosition(0, 16); // Move cursor below the menu (line 15)
+                                    Console.SetCursorPosition(0, 16); // Move cursor below the menu (line 15)
                                     break;
                             }
                         }
@@ -268,6 +271,8 @@
 
                                 case ConsoleKey.D3:
                                 case ConsoleKey.NumPad3:
+                                    //Prints all requested games
+                                    GameHandler.PrintRequest(stock);
 
                                     break;
 
@@ -304,9 +309,6 @@
 
             }
         }
-       
+
     }
-
-
-
 }

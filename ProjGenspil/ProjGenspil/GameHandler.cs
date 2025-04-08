@@ -1,23 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-
-namespace ProjGenspil
+﻿namespace ProjGenspil
 {
 
     class GameHandler
     {
-        
+
         static string gameManager = Program.gameManager;
         static string searchMenu = Program.searchMenu;
 
-
-        static string projectPath = Program.projectPath;
-        static string folder = Program.folder;
         static string gamesFile = Program.gamesFile;
+        static string requestFile = Program.requestFile;
 
 
         public static void DeleteGameInstance(Stock stock, int deleteGameIndex)
@@ -106,7 +97,7 @@ namespace ProjGenspil
 
             Console.WriteLine(gameManager);
             Console.SetCursorPosition(0, 16); // Move cursor below the menu (line 15)
-            Console.WriteLine("The copy has been added to the game".PadRight(Console.WindowWidth));
+            Console.WriteLine($"The copy has been added to the game".PadRight(Console.WindowWidth));
             Console.SetCursorPosition(0, 16); // Move cursor below the menu (line 15)
 
         }
@@ -122,7 +113,6 @@ namespace ProjGenspil
 
             string search = Console.ReadLine();
             bool foundGame = false;
-            bool foundCopy = false;
 
             for (int i = 0; i < stock.Games.Count; i++)
             {
@@ -207,7 +197,7 @@ namespace ProjGenspil
         public static void PrintTest(Stock stock)
         {
 
-            Console.WriteLine("\n---- Test method ----".PadRight(Console.WindowWidth));
+            Console.WriteLine("\n---- All games in stock ----".PadRight(Console.WindowWidth));
             foreach (var game in stock.Games)
             {
 
@@ -331,6 +321,49 @@ namespace ProjGenspil
 
         public static void EditGameVariant(Stock stock, int editIndex)
         {
+
+        }
+
+        public static void AddGameRequest(Stock stock)
+        {
+            Console.WriteLine("\n---- Enter the customers information ----");
+
+            Console.Write("\nEnter the customers full name: ");
+            string customerName = Console.ReadLine();
+
+            Console.Write("\nEnter the customers phone number: ");
+            string customerPhone = (Console.ReadLine());
+
+            Console.Write("\nEnter the customers email adress: ");
+            string customerEmail = Console.ReadLine();
+
+            Console.WriteLine("\n---- Enter the information on the game ----");
+
+            Console.Write("\nEnter the name of the game: ");
+            string gameName = Console.ReadLine();
+
+            Console.Write("\nEnter the variant of the game: ");
+            string gameVariant = Console.ReadLine();
+
+
+
+
+            Customer customer = new Customer(customerName, customerPhone, customerEmail, gameName, gameVariant);
+
+            stock.GameRequest.Add(customer);
+            stock.SaveToFileRequest(requestFile);
+        }
+
+        public static void PrintRequest(Stock stock)
+        {
+
+            Console.WriteLine("\n---- All games Requests ----".PadRight(Console.WindowWidth));
+            foreach (var customer in stock.GameRequest)
+            {
+
+                Console.WriteLine(customer.GetRequestDetails());
+
+            }
 
         }
 

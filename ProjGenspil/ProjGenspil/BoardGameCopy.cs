@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProjGenspil
+﻿namespace ProjGenspil
 {
     public class BoardGameCopy
     {
@@ -29,7 +23,7 @@ namespace ProjGenspil
         public string GetCopyDetails()
         {
             string copyDetails = $"Game condition: \"{GameCondition}\"".PadRight(Console.WindowWidth) +
-                $"\nPrice: {GamePrice} DOLLARS".PadRight(Console.WindowWidth);
+                $"\nPrice: {GamePrice:C}".PadRight(Console.WindowWidth);
             return copyDetails;
         }
 

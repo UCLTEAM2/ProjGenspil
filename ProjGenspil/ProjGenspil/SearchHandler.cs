@@ -1,17 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProjGenspil
+﻿namespace ProjGenspil
 {
-     public class SearchHandler
-     {
-        
+    public class SearchHandler
+    {
+
         public static string gameManager = Program.gameManager;
         public static string searchMenu = Program.searchMenu;
-        
+
 
         public static void SearchForAGameByName(Stock stock)
         {

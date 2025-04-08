@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ProjGenspil
+﻿namespace ProjGenspil
 {
     public class BoardGameVariant
     {
@@ -28,6 +22,12 @@ namespace ProjGenspil
         public List<BoardGameCopy> BoardGameCopies { get => _boardGameCopies; set => _boardGameCopies = value; }
 
         public BoardGameVariant() { }
+        public BoardGameVariant(string gameName, string gameVariant)
+        {
+            _gameName = gameName;
+            _gameVariant = gameVariant;
+
+        }
 
         public BoardGameVariant(string gameName, string gameVariant, string gameGenre, int gameMinNumOfPlayers, int gameMaxNumOfPlayers, string gameLanguage)
         {
@@ -38,7 +38,7 @@ namespace ProjGenspil
             _gameMaxNumOfPlayers = gameMaxNumOfPlayers;
             _gameLanguage = gameLanguage;
             _boardGameCopies = new List<BoardGameCopy>();
-        
+
         }
 
         public void AddCopy(BoardGameCopy copy)
@@ -135,7 +135,7 @@ namespace ProjGenspil
                 variant.AddCopy(copy);
             }
 
-         return variant;
+            return variant;
         }
 
     }

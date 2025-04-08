@@ -1,5 +1,6 @@
 Monopoly,OG,Board,2,4,DA
-1
+2
 A,50
+A,250
 Matador,JR,Board,1,4,DA
 0

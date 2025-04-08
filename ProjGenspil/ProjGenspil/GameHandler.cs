@@ -6,6 +6,7 @@
 
         static string gameManager = Program.gameManager;
         static string searchMenu = Program.searchMenu;
+        static string stockManager = Program.stockManager;
 
         static string gamesFile = Program.gamesFile;
         static string requestFile = Program.requestFile;
@@ -196,6 +197,11 @@
 
         public static void PrintTest(Stock stock)
         {
+            Console.Clear();
+            Console.WriteLine("\x1b[3J");
+            Console.Clear();
+
+            Console.WriteLine(stockManager);
 
             Console.WriteLine("\n---- All games in stock ----".PadRight(Console.WindowWidth));
             foreach (var game in stock.Games)
@@ -367,6 +373,12 @@
 
         public static void PrintRequest(Stock stock)
         {
+            Console.Clear();
+            Console.WriteLine("\x1b[3J");
+            Console.Clear();
+
+            Console.WriteLine(stockManager);
+
             Console.WriteLine("\n---- All games Requests ----".PadRight(Console.WindowWidth));
             foreach (var customer in stock.GameRequest)
             {

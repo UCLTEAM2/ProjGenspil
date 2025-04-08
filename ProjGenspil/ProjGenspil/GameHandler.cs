@@ -326,7 +326,8 @@
 
         public static void AddGameRequest(Stock stock)
         {
-            Console.WriteLine("\n---- Enter the customers information ----");
+            Console.SetCursorPosition(0, 16); // Move cursor below the menu (line 15)
+            Console.WriteLine("\n---- Enter the customers information ----".PadRight(Console.WindowWidth));
 
             Console.Write("\nEnter the customers full name: ");
             string customerName = Console.ReadLine();
@@ -352,14 +353,25 @@
 
             stock.GameRequest.Add(customer);
             stock.SaveToFileRequest(requestFile);
+
+            Console.Clear();
+            Console.WriteLine("\x1b[3J");
+            Console.Clear();
+
+            Console.WriteLine(gameManager);
+            Console.SetCursorPosition(0, 16); // Move cursor below the menu (line 15)
+            Console.WriteLine("The request has been added to the stock".PadRight(Console.WindowWidth));
+            Console.SetCursorPosition(0, 16); // Move cursor below the menu (line 15)
+
         }
 
         public static void PrintRequest(Stock stock)
         {
-
             Console.WriteLine("\n---- All games Requests ----".PadRight(Console.WindowWidth));
             foreach (var customer in stock.GameRequest)
             {
+
+
 
                 Console.WriteLine(customer.GetRequestDetails());
 

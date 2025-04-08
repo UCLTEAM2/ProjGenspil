@@ -87,6 +87,8 @@
                     case ConsoleKey.NumPad1:
                         // Game manager
                         Console.Clear();
+                        Console.WriteLine("\x1b[3J");
+                        Console.Clear();
                         Console.WriteLine(gameManager);
                         Console.SetCursorPosition(0, 16); // Move cursor below the menu (line 15)
                         bool innerGameLoop = true;
@@ -181,9 +183,13 @@
 
                                 case ConsoleKey.Escape:
                                     Console.Clear();
+                                    Console.WriteLine("\x1b[3J");
+                                    Console.Clear();
                                     innerGameLoop = false; // Exit the inner loop to return to outer switch
                                     break;
                                 default:
+                                    Console.Clear();
+                                    Console.WriteLine("\x1b[3J");
                                     Console.Clear();
                                     Console.WriteLine(gameManager);
                                     Console.SetCursorPosition(0, 16); // Move cursor below the menu (line 15)
@@ -228,9 +234,13 @@
                                     break;
                                 case ConsoleKey.Escape:
                                     Console.Clear();
+                                    Console.WriteLine("\x1b[3J");
+                                    Console.Clear();
                                     innerSearchLoop = false; // Exit the inner loop to return to outer switch
                                     break;
                                 default:
+                                    Console.Clear();
+                                    Console.WriteLine("\x1b[3J");
                                     Console.Clear();
                                     Console.WriteLine(searchMenu);
                                     Console.SetCursorPosition(0, 11); // Move cursor below the menu (line 11)
@@ -239,6 +249,8 @@
                                     break;
                             }
                         }
+                        Console.Clear();
+                        Console.WriteLine("\x1b[3J");
                         Console.Clear();
                         Console.WriteLine($"{systemMenu}");
                         Console.SetCursorPosition(0, 11); // Move cursor below the menu (line 11)
@@ -278,9 +290,13 @@
 
                                 case ConsoleKey.Escape:
                                     Console.Clear();
+                                    Console.WriteLine("\x1b[3J");
+                                    Console.Clear();
                                     innerStockLoop = false; // Exit the inner loop to return to outer switch
                                     break;
                                 default:
+                                    Console.Clear();
+                                    Console.WriteLine("\x1b[3J");
                                     Console.Clear();
                                     Console.WriteLine(stockManager);
                                     Console.SetCursorPosition(0, 11); // Move cursor below the menu (line 11)
@@ -291,6 +307,8 @@
 
                         }
                         Console.Clear();
+                        Console.WriteLine("\x1b[3J");
+                        Console.Clear();
                         Console.WriteLine(systemMenu);
                         Console.SetCursorPosition(0, 11); // Move cursor below the menu (line 11)
                         break;
@@ -299,6 +317,8 @@
                         Console.WriteLine("Exiting the program. Goodbye!");
                         return;
                     default:
+                        Console.Clear();
+                        Console.WriteLine("\x1b[3J");
                         Console.Clear();
                         Console.WriteLine(systemMenu);
                         Console.SetCursorPosition(0, 11); // Move cursor below the menu (line 11)

@@ -8,7 +8,4 @@ A,20,0
 A,50,0
 Matador,JR,Board,1,4,DA
 0
-a,a,a,1,2,a
-0
-b,b,b,1,2,b
-0
+

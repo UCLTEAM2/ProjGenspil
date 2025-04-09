@@ -162,7 +162,7 @@
                                     //TODO: A method that prints all copies on a game, with the condition, price and quantity
                                     Console.Clear();
                                     int gameIndex = GameHandler.PrintCopyWithSearchIndex(stock);
-
+                                    Console.Clear();
                                     if (gameIndex != -1)
                                     {
                                         GameHandler.PrintAllCopies(stock, gameIndex);

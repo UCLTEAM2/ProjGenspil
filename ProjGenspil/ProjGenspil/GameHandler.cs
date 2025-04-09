@@ -1,7 +1,9 @@
-﻿namespace ProjGenspil
+﻿using System;
+
+namespace ProjGenspil
 {
 
-    class GameHandler
+    public class GameHandler
     {
 
         static string gameManager = Program.gameManager;
@@ -76,19 +78,13 @@
                 $"\n5. \"E\" for very worn" +
                 $"\n6. \"F\" for spareparts");
 
-            //int conditionEnum = Convert.ToInt32(Console.ReadLine()) - 1;
             Condition conditionEnum = Enum.Parse<Condition>(Console.ReadLine(), true) - 1;
 
-            //Console.WriteLine($"\n\"A\" for new\n\"B\" for slightly used\n\"C\" for used\n\"D\" for a bit worn\n\"E\" for very worn\n\"F\" for trash");
-
-            //char condition = Convert.ToChar(Console.ReadLine().ToUpper());
             Console.Write($"\nEnter a price for the game: ");
-            double price = Convert.ToDouble(Console.ReadLine());
-
-            var chosen = stock.Games[gameIndex];
+            string priceInput = Console.ReadLine(); // Capture the input
+            double price = Convert.ToDouble(priceInput); // Use the captured input
 
             BoardGameCopy copy = new BoardGameCopy(conditionEnum, price);
-
             stock.Games[gameIndex].AddCopy(copy);
             stock.SaveToFile(gamesFile);
 
@@ -100,7 +96,6 @@
             Console.SetCursorPosition(0, 16); // Move cursor below the menu (line 15)
             Console.WriteLine($"The copy has been added to the game".PadRight(Console.WindowWidth));
             Console.SetCursorPosition(0, 16); // Move cursor below the menu (line 15)
-
         }
 
         public static void DeleteAGameCopy(Stock stock)
@@ -184,14 +179,15 @@
 
         public static void PrintAllCopies(Stock stock, int gameIndex)
         {
-            Console.Clear();
-            Console.WriteLine($"\n ---- Copies of {stock.Games[gameIndex].GameName} ----".PadRight(Console.WindowWidth));
+            //Console.Clear();
+           
+            Console.WriteLine($"---- Copies of {stock.Games[gameIndex].GameName} ----");
             var copies = stock.Games[gameIndex].GetAllCopies();
 
             foreach (var copy in copies)
             {
                 Console.WriteLine(stock.Games[gameIndex].GetGameDetails());
-                Console.WriteLine(copy.GetCopyDetails().PadRight(Console.WindowWidth));
+                Console.WriteLine(copy.GetCopyDetails());
             }
         }
 

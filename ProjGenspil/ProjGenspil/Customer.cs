@@ -31,7 +31,7 @@
         {
             var customerData = new System.Text.StringBuilder();
             customerData.Append($"{CustomerName},{CustomerPhone},{CustomerEmail},{GameName},{GameVariant}");
-            customerData.AppendLine(); // Adds platform-specific line ending (\r\n on Windows)
+            //customerData.AppendLine(); // Adds platform-specific line ending (\r\n on Windows)
 
             return customerData.ToString();
         }
@@ -64,11 +64,11 @@
                 // Handle the exception or use the default width
             }
 
-            string details = $"\nCustomers name: {CustomerName}" +
-                $"\nCustomers phone number: {CustomerPhone}" +
-                $"\nCustomers email adress: {CustomerEmail}" +
-                $"\nThe requested games name: {GameName}" +
-                $"\nThe requested games variant: {GameVariant}";
+            string details = $"\nCustomer Name: {CustomerName}" +
+            $"\nPhone: {CustomerPhone}" +
+            $"\nEmail: {CustomerEmail}" +
+            $"\nGame Name: {GameName}" +
+            $"\nGame Variant: {GameVariant}";
             return details;
         }
     }

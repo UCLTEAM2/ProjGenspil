@@ -22,8 +22,17 @@
 
         public string GetCopyDetails()
         {
-            string copyDetails = $"Game condition: \"{GameCondition}\"".PadRight(Console.WindowWidth) +
-                $"\nPrice: {GamePrice:C}".PadRight(Console.WindowWidth);
+            int windowWidth = 80; // Default width
+            try
+            {
+                windowWidth = Console.WindowWidth;
+            }
+            catch (IOException)
+            {
+                // Handle the exception or use the default width
+            }
+            string copyDetails = $"Condition: {GameCondition}" +
+                $"\nPrice: {GamePrice:F1}";
             return copyDetails;
         }
 
@@ -32,7 +41,7 @@
             string gameVariantName = BoardGameVariant != null ? BoardGameVariant.GameName : "No Game Name";
             string gameVariantVariant = BoardGameVariant != null ? BoardGameVariant.GameVariant : "No Game Variant";
 
-            return $"{GameCondition},{GamePrice}";
+            return $"{GameCondition},{GamePrice:F1}";
         }
 
         public static BoardGameCopy FromString(string data)

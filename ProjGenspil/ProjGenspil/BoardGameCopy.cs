@@ -31,8 +31,8 @@
             {
                 // Handle the exception or use the default width
             }
-            string copyDetails = $"Condition: {GameCondition}" +
-                $"\nPrice: {GamePrice:F1}";
+            string copyDetails = $"Condition: {GameCondition}".PadRight(windowWidth) +
+                $"\nPrice: {GamePrice:F1}".PadRight(windowWidth);
             return copyDetails;
         }
 

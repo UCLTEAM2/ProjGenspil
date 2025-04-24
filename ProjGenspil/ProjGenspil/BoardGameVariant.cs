@@ -26,6 +26,7 @@
         {
             _gameName = gameName;
             _gameVariant = gameVariant;
+            
 
         }
 
